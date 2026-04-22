@@ -1,4 +1,4 @@
-const CACHE_NAME = 'showdo-miau-v1';
+const CACHE_NAME = 'showdo-miau-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -21,6 +21,18 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   const url = new URL(req.url);
+
+  // Treat `config.js` as network-first so configuration changes propagate
+  // immediately (avoids needing Ctrl+F5 when deploying config changes).
+  if (url.pathname === '/config.js') {
+    event.respondWith(
+      fetch(req).then(res => {
+        caches.open(CACHE_NAME).then(cache => cache.put(req, res.clone()));
+        return res;
+      }).catch(() => caches.match(req).then(resp => resp || new Response('', { status: 503, headers: { 'Content-Type': 'text/plain' } })))
+    );
+    return;
+  }
 
   // Do not intercept API requests — let them go to network.
   // If offline, return a JSON fallback so callers always get a Response.
