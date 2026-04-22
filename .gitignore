@@ -42,3 +42,5 @@ coverage/
 
 # Arquivos específicos (opcional)
 *.tgz
+# Generated runtime config
+config.js

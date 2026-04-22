@@ -5,6 +5,7 @@
   "scripts": {
     "start": "dotenv -e .env -- npx http-server -c-1 . -p 8080",
     "generate": "node generate_questions.js --count 10",
+    "generate-config": "node scripts/generate-config.js",
     "start:server": "node server.js",
     "dev:server": "nodemon server.js"
   },
