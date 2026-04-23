@@ -1,17 +1,14 @@
 const QUESTIONS_URL = './questions.json';
 const NUM_QUESTIONS = 10;
-
+// Runtime-configurable server base. Create a `config.js` that sets:
+// window.SHOWDO_CONFIG = { serverBase: 'https://seu-backend.example.com' }
 const DEFAULT_LOCAL_SERVER = 'http://localhost:3000';
-const SERVER_BASE =
-  (globalThis.SHOWDO_CONFIG?.serverBase) ||
-  ((location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? DEFAULT_LOCAL_SERVER
-    : '');
+const SERVER_BASE = (globalThis.SHOWDO_CONFIG?.serverBase)
+  || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? DEFAULT_LOCAL_SERVER : '');
 
 const AUTO_ADVANCE_DELAY = 15000;
 const AUTO_ADVANCE_ENABLED = true;
 
-// ── DOM refs ──────────────────────────────────────────────────────────────────
 const intro = document.getElementById('intro');
 const questionScreen = document.getElementById('questionScreen');
 const finalScreen = document.getElementById('finalScreen');
@@ -29,59 +26,25 @@ const themeCards = Array.from(document.querySelectorAll('.theme-card'));
 const diceBtn = document.getElementById('random-dice');
 const themeTagEl = document.getElementById('themeTag');
 
-// ── Estado centralizado ───────────────────────────────────────────────────────
-// [FIX #15] Usa factory function em vez de Object.freeze + spread para evitar
-// referências de array compartilhadas entre resets.
-function createInitialState() {
-  return {
-    questions: [],
-    selected: [],
-    current: 0,
-    score: 0,
-    answered: false,
-    autoAdvanceTimer: null,
-    currentTheme: null,
-    // [FIX #1] Ação do nextBtn gerida pelo estado — handler único no DOM.
-    nextAction: null,
-  };
-}
+let questions = [];
+let selected = [];
+let current = 0;
+let score = 0;
+let answered = false;
+let autoAdvanceTimer = null;
+let currentTheme = null;
 
-let state = createInitialState();
-
-function resetState() {
-  clearAutoAdvance();
-  state = createInitialState();
-}
-
-// ── [FIX #5] AbortController — cancela fetches pendentes ao mudar de tema ────
-let currentFetchController = null;
-
-// ── Helpers de auto-avanço ────────────────────────────────────────────────────
-function clearAutoAdvance() {
-  if (state.autoAdvanceTimer) {
-    clearTimeout(state.autoAdvanceTimer);
-    state.autoAdvanceTimer = null;
-  }
-  explanationEl?.querySelector('.countdown')?.remove();
-}
-
-// ── [FIX #1] Handler único para o nextBtn ─────────────────────────────────────
-// Em vez de misturar addEventListener permanente com onclick pontual,
-// um único listener despacha para state.nextAction.
-// Isso elimina o bug de double-dispatch no fluxo de erro.
-nextBtn.addEventListener('click', () => {
-  if (typeof state.nextAction === 'function') state.nextAction();
-});
-
+nextBtn.addEventListener('click', onNext);
 restartBtn.addEventListener('click', resetToIntro);
 
-// ── Listeners de UI ───────────────────────────────────────────────────────────
+
 themeCards.forEach(card => {
-  if (!card.dataset.theme) return;
+  if (!card.dataset.theme) return; // ignora o dado
   card.addEventListener('click', () => {
+    const theme = card.dataset.theme;
     themeCards.forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
-    startGame(card.dataset.theme);
+    startGame(theme);
   });
 });
 
@@ -91,187 +54,84 @@ if (diceBtn) {
     diceBtn.classList.add('rolling');
     setTimeout(() => {
       diceBtn.classList.remove('rolling');
+      // Seleciona um tema aleatório (exceto o próprio dado)
       const validThemes = themeCards.filter(c => c.dataset.theme);
-      const chosen = validThemes[Math.floor(Math.random() * validThemes.length)];
+      const randomIdx = Math.floor(Math.random() * validThemes.length);
+      const chosen = validThemes[randomIdx];
       if (chosen) {
         themeCards.forEach(c => c.classList.remove('selected'));
         chosen.classList.add('selected');
         startGame(chosen.dataset.theme);
       }
-    }, 700);
+    }, 700); // tempo igual à animação CSS
   });
 }
 
-// ── Fluxo do jogo ─────────────────────────────────────────────────────────────
 async function startGame(theme) {
-  // [FIX #5] Aborta qualquer fetch em curso antes de iniciar um novo.
-  currentFetchController?.abort();
-  currentFetchController = new AbortController();
-  const { signal } = currentFetchController;
-
-  resetState();
-  state.currentTheme = theme;
-
+  currentTheme = theme;
   if (themeTagEl) {
-    themeTagEl.textContent = theme ? `Tema: ${theme}` : '';
-    themeTagEl.classList.toggle('hidden', !theme);
+    if (theme) {
+      themeTagEl.textContent = `Tema: ${theme}`;
+      themeTagEl.classList.remove('hidden');
+    } else {
+      themeTagEl.classList.add('hidden');
+      themeTagEl.textContent = '';
+    }
   }
-
   intro.classList.add('hidden');
   questionScreen.classList.remove('hidden');
   finalScreen.classList.add('hidden');
 
   if (theme) {
-    questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… `;
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const uid = `hg${Math.random().toString(36).slice(2, 9)}`;
-
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('class', 'hourglass');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('width', '1em');
-    svg.setAttribute('height', '1em');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-
-    const defs = document.createElementNS(svgNS, 'defs');
-    const clipTop = document.createElementNS(svgNS, 'clipPath');
-    clipTop.setAttribute('id', `hg-top-${uid}`);
-    const polyTop = document.createElementNS(svgNS, 'polygon');
-    polyTop.setAttribute('points', '6,2 18,2 12,10');
-    clipTop.appendChild(polyTop);
-    defs.appendChild(clipTop);
-
-    const clipBottom = document.createElementNS(svgNS, 'clipPath');
-    clipBottom.setAttribute('id', `hg-bottom-${uid}`);
-    const polyBottom = document.createElementNS(svgNS, 'polygon');
-    polyBottom.setAttribute('points', '6,22 18,22 12,14');
-    clipBottom.appendChild(polyBottom);
-    defs.appendChild(clipBottom);
-
-    svg.appendChild(defs);
-
-    const outline = document.createElementNS(svgNS, 'path');
-    outline.setAttribute('d', 'M7 2h10l-4 6 4 6H7l4-6-4-6z');
-    outline.setAttribute('fill', 'none');
-    outline.setAttribute('stroke', 'currentColor');
-    outline.setAttribute('stroke-width', '1.2');
-    outline.setAttribute('stroke-linejoin', 'round');
-    svg.appendChild(outline);
-
-    const gTop = document.createElementNS(svgNS, 'g');
-    gTop.setAttribute('class', 'sand-top');
-    gTop.setAttribute('clip-path', `url(#hg-top-${uid})`);
-    const rectTop = document.createElementNS(svgNS, 'rect');
-    rectTop.setAttribute('x', '6');
-    rectTop.setAttribute('y', '2');
-    rectTop.setAttribute('width', '12');
-    rectTop.setAttribute('height', '8');
-    rectTop.setAttribute('fill', 'currentColor');
-    rectTop.setAttribute('opacity', '0.95');
-    gTop.appendChild(rectTop);
-    svg.appendChild(gTop);
-
-    const stream = document.createElementNS(svgNS, 'rect');
-    stream.setAttribute('class', 'stream');
-    stream.setAttribute('x', '11.4');
-    stream.setAttribute('y', '9');
-    stream.setAttribute('width', '1.2');
-    stream.setAttribute('height', '6');
-    stream.setAttribute('fill', 'currentColor');
-    stream.setAttribute('opacity', '0.95');
-    stream.setAttribute('rx', '0.6');
-    svg.appendChild(stream);
-
-    const gBottom = document.createElementNS(svgNS, 'g');
-    gBottom.setAttribute('class', 'sand-bottom');
-    gBottom.setAttribute('clip-path', `url(#hg-bottom-${uid})`);
-    const rectBottom = document.createElementNS(svgNS, 'rect');
-    rectBottom.setAttribute('x', '6');
-    rectBottom.setAttribute('y', '14');
-    rectBottom.setAttribute('width', '12');
-    rectBottom.setAttribute('height', '8');
-    rectBottom.setAttribute('fill', 'currentColor');
-    rectBottom.setAttribute('opacity', '0.95');
-    gBottom.appendChild(rectBottom);
-    svg.appendChild(gBottom);
-
-    questionEl.appendChild(svg);
+    questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… Isso pode levar alguns segundos.`;
     choicesEl.innerHTML = '';
   }
 
-  try {
-    let loaded = false;
+  let loaded = false;
 
-    if (theme) {
-      try {
-        const resp = await fetch(`${SERVER_BASE}/api/generate-questions`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ theme, count: NUM_QUESTIONS }),
-          // [FIX #5] Signal passado ao fetch.
-          signal,
-        });
-        if (resp.ok) {
-          const data = await resp.json();
-          if (data?.ok && Array.isArray(data.questions) && data.questions.length) {
-            state.questions = data.questions;
-            loaded = true;
-            console.log('Perguntas geradas via servidor generativo.');
-          }
-        }
-      } catch (err) {
-        // AbortError é esperado quando o utilizador muda de tema rapidamente — não logar como erro.
-        if (err.name !== 'AbortError') {
-          console.warn('Falha ao chamar servidor generativo:', err);
-        } else {
-          // Fetch cancelado intencionalmente — sai silenciosamente.
-          return;
+  if (theme) {
+    try {
+      const resp = await fetch(`${SERVER_BASE}/api/generate-questions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ theme, count: NUM_QUESTIONS }) // Pede apenas as 10 necessárias
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data?.ok && Array.isArray(data.questions) && data.questions.length) {
+          questions = data.questions;
+          loaded = true;
+          console.log('Perguntas geradas via servidor generativo');
         }
       }
+    } catch (err) {
+      console.warn('Falha ao chamar servidor generativo:', err);
     }
-
-    if (!loaded) {
-      state.questions = await loadQuestions();
-    }
-
-    let pool = state.questions;
-    if (theme && theme !== 'Misturado') {
-      pool = state.questions.filter(
-        q => String(q.theme || '').toLowerCase() === String(theme).toLowerCase()
-      );
-    }
-
-    if (pool.length === 0) {
-      throw new Error(`Nenhuma pergunta encontrada para o tema "${theme}".`);
-    }
-
-    state.selected = pickRandom(pool, NUM_QUESTIONS);
-    // [FIX #16] Removidas as linhas redundantes após resetState():
-    // current, score e answered já são 0/false vindos de createInitialState().
-    updateScore();
-
-    if (progressFill) progressFill.style.width = '0%';
-    showQuestion();
-
-  } catch (err) {
-    if (err.name === 'AbortError') return;
-
-    console.error('Erro ao iniciar jogo:', err);
-    questionEl.textContent =
-      `❌ Erro ao carregar perguntas: ${err.message} Tente novamente.`;
-    choicesEl.innerHTML = '';
-    nextBtn.textContent = 'Voltar ao início';
-    nextBtn.disabled = false;
-    // [FIX #1] Define a ação no estado — o handler único vai executá-la.
-    state.nextAction = resetToIntro;
   }
+
+  if (!loaded) {
+    questions = await loadQuestions();
+  }
+
+  let pool = questions;
+  if (theme && theme !== 'Misturado') {
+    pool = questions.filter(q => String(q.theme || '').toLowerCase() === String(theme).toLowerCase());
+  }
+
+  selected = pickRandom(pool, NUM_QUESTIONS);
+  current = 0;
+  score = 0;
+  answered = false;
+  updateScore();
+
+  if (progressFill) progressFill.style.width = '0%';
+  showQuestion();
 }
 
 async function loadQuestions() {
-  const res = await fetch(QUESTIONS_URL, { cache: 'default' });
-  if (!res.ok) throw new Error('Falha ao carregar perguntas locais.');
-  return res.json();
+  const res = await fetch(QUESTIONS_URL, { cache: 'no-store' });
+  if (!res.ok) throw new Error('Falha ao carregar perguntas');
+  return await res.json();
 }
 
 function pickRandom(arr, n) {
@@ -284,50 +144,33 @@ function pickRandom(arr, n) {
 }
 
 function showQuestion() {
-  if (!state.selected?.length) {
-    questionEl.textContent = 'Não foram encontradas perguntas suficientes...';
+  if (!selected || selected.length === 0) {
+    questionEl.textContent = 'Não foram encontradas perguntas suficientes para este tema.';
     choicesEl.innerHTML = '';
-    nextBtn.textContent = 'Voltar ao início';
-    nextBtn.disabled = false;
-    state.nextAction = resetToIntro;
     return;
   }
-  const q = state.selected[state.current];
+
+  const q = selected[current];
   questionEl.textContent = q.question;
   choicesEl.innerHTML = '';
-
-  if (explanationEl) {
-    explanationEl.classList.add('hidden');
-    explanationEl.textContent = '';
-  }
-
-  state.answered = false;
+  if (explanationEl) { explanationEl.classList.add('hidden'); explanationEl.textContent = ''; }
+  answered = false;
   nextBtn.disabled = true;
-  // [FIX #1] Define a ação padrão de "próxima" para este passo do jogo.
-  state.nextAction = onNext;
+  progressText.textContent = `${current + 1}/${selected.length}`;
+  if (progressFill) progressFill.style.width = `${(current / selected.length) * 100}%`;
 
-  if (progressText) progressText.textContent = `${state.current + 1}/${state.selected.length}`;
-  // [FIX #6] Linha setAttribute('textContent', ...) removida — era dead code
-  // (setAttribute não altera a propriedade textContent do DOM).
-
-  if (progressFill) {
-    progressFill.style.width =
-      `${(state.current / state.selected.length) * 100}%`;
-  }
-
-  clearAutoAdvance();
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
 
   q.choices.forEach((text, idx) => {
     const btn = document.createElement('button');
     btn.className = 'btn choice';
     btn.type = 'button';
     btn.dataset.index = idx;
-    btn.setAttribute('aria-label', `Opção ${String.fromCodePoint(65 + idx)}: ${text}`);
 
     const label = document.createElement('span');
     label.className = 'choice-label';
     label.textContent = String.fromCodePoint(65 + idx);
-    label.setAttribute('aria-hidden', 'true');
 
     const txt = document.createElement('span');
     txt.className = 'choice-text';
@@ -341,197 +184,130 @@ function showQuestion() {
 }
 
 function onChoice(e) {
-  if (state.answered) return;
-  state.answered = true;
-
+  if (answered) return;
+  answered = true;
   const idx = Number(e.currentTarget.dataset.index);
-  const correctIdx = state.selected[state.current].answerIndex;
+  const correctIdx = selected[current].answerIndex;
   const buttons = Array.from(choicesEl.querySelectorAll('button'));
-  const isCorrect = idx === correctIdx;
 
-  if (isCorrect) {
+  if (idx === correctIdx) {
     e.currentTarget.classList.add('correct');
-    e.currentTarget.setAttribute('aria-label',
-      `Resposta correta: ${state.selected[state.current].choices[idx]}`);
-    state.score++;
+    score++;
     updateScore();
   } else {
     e.currentTarget.classList.add('wrong');
-    e.currentTarget.setAttribute('aria-label',
-      `Resposta incorreta: ${state.selected[state.current].choices[idx]}`);
-    if (buttons[correctIdx]) {
-      buttons[correctIdx].classList.add('correct');
-      buttons[correctIdx].setAttribute('aria-label',
-        `Resposta correta: ${state.selected[state.current].choices[correctIdx]}`);
-    }
+    if (buttons[correctIdx]) buttons[correctIdx].classList.add('correct');
   }
-
-  buttons.forEach(b => { b.disabled = true; });
+  buttons.forEach(b => b.disabled = true);
 
   if (explanationEl) {
-    const provided = state.selected[state.current].explanation;
-    explanationEl.textContent = provided ||
-      (isCorrect
-        ? 'Certo!'
-        : `A correta era: ${state.selected[state.current].choices[correctIdx]}`);
+    const provided = selected[current].explanation;
+    const expText = provided || (idx === correctIdx ? 'Certo!' : `A correta era: ${selected[current].choices[correctIdx]}`);
+    explanationEl.textContent = expText;
     explanationEl.classList.remove('hidden');
   }
 
   nextBtn.disabled = false;
-  nextBtn.textContent =
-    state.current === state.selected.length - 1 ? 'Finalizar' : 'Próxima';
+  nextBtn.textContent = (current === selected.length - 1) ? 'Finalizar' : 'Próxima';
 
-  // [FIX #7] Usa dois requestAnimationFrame aninhados em vez de setTimeout(20).
-  // Garante que o browser pintou o reflow antes de iniciar a transição CSS,
-  // evitando o caso em que frames lentos perdem o trigger.
   if (AUTO_ADVANCE_ENABLED && explanationEl) {
-    const cd = document.createElement('div');
-    const fill = document.createElement('div');
-    cd.className = 'countdown';
-    fill.className = 'countdown-fill';
-    fill.style.width = '100%';
-    cd.appendChild(fill);
-    explanationEl.appendChild(cd);
+    const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove();
+    const cd = document.createElement('div'); cd.className = 'countdown';
+    const fill = document.createElement('div'); fill.className = 'countdown-fill';
+    fill.style.width = '100%'; cd.appendChild(fill); explanationEl.appendChild(cd);
 
-    void fill.offsetWidth; // força reflow inicial para a propriedade ser registada
+    void fill.offsetWidth;
     fill.style.transition = `width ${AUTO_ADVANCE_DELAY}ms linear`;
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => { fill.style.width = '0%'; })
-    );
+    setTimeout(() => { fill.style.width = '0%'; }, 20);
 
-    state.autoAdvanceTimer = setTimeout(() => {
-      state.autoAdvanceTimer = null;
+    if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+    autoAdvanceTimer = setTimeout(() => {
+      autoAdvanceTimer = null;
       onNext();
     }, AUTO_ADVANCE_DELAY);
   }
-
-  if (progressFill) {
-    progressFill.style.width =
-      `${((state.current + 1) / state.selected.length) * 100}%`;
-  }
+  if (progressFill) progressFill.style.width = `${((current + 1) / selected.length) * 100}%`;
 }
 
 function onNext() {
-  clearAutoAdvance();
-  if (state.current < state.selected.length - 1) {
-    state.current++;
-    showQuestion();
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
+  if (current < selected.length - 1) {
+    current++; showQuestion();
   } else {
     showFinal();
   }
 }
 
 function updateScore() {
-  scoreEl.textContent = state.score;
+  scoreEl.textContent = score;
 }
 
 function showFinal() {
-  clearAutoAdvance();
   questionScreen.classList.add('hidden');
   finalScreen.classList.remove('hidden');
-  finalScoreEl.textContent = state.score;
+  finalScoreEl.textContent = score;
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
 
   const key = 'showdo_miau_highscore';
   const prev = Number(localStorage.getItem(key) || 0);
-  if (state.score > prev) {
-    localStorage.setItem(key, String(state.score));
-    highScoreEl.textContent = `${state.score} (novo recorde! 🏆)`;
+  if (score > prev) {
+    localStorage.setItem(key, String(score));
+    highScoreEl.textContent = score + ' (novo recorde!)';
   } else {
     highScoreEl.textContent = prev;
   }
 }
 
 function resetToIntro() {
-  resetState();
-  updateScore();
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
   finalScreen.classList.add('hidden');
-  questionScreen.classList.add('hidden');
   intro.classList.remove('hidden');
   themeCards.forEach(c => c.classList.remove('selected'));
-  if (themeTagEl) {
-    themeTagEl.classList.add('hidden');
-    themeTagEl.textContent = '';
-  }
-  nextBtn.textContent = 'Próxima';
-  nextBtn.disabled = true;
-  // state.nextAction já foi reposto para null pelo resetState().
+  if (themeTagEl) { themeTagEl.classList.add('hidden'); themeTagEl.textContent = ''; }
 }
 
-// ── Atalhos de teclado ────────────────────────────────────────────────────────
 document.addEventListener('keydown', (e) => {
   if (questionScreen.classList.contains('hidden')) return;
-  // [FIX #14] parseInt com radix explícito — mais claro que comparação de strings.
-  const idx = Number.parseInt(e.key, 10) - 1;
-  if (!Number.isNaN(idx) && idx >= 0 && idx < 9) {
-    choicesEl.querySelector(`button[data-index="${idx}"]`)?.click();
+  if (e.key >= '1' && e.key <= '9') {
+    const idx = Number(e.key) - 1;
+    const btn = choicesEl.querySelector(`button[data-index="${idx}"]`);
+    if (btn) btn.click();
   }
 });
 
-// ── Service Worker ─────────────────────────────────────────────────────────────
+// ── Service Worker Registration ───────────────────────────────────────────────
+// FIX: Read the versioned SW filename from config (set by generate-config.js at
+// build time) so the browser always registers the correct per-build file.
+// Fallback to the unversioned name for local development where no config exists.
 if ('serviceWorker' in navigator) {
-  (async () => {
-    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const swFile = globalThis.SHOWDO_CONFIG?.serviceWorkerFile || 'service-worker.js';
 
-    // Try to fetch a fresh JSON config to avoid stale config served by an
-    // older service worker. Use a cache-busting query param.
-    let liveConfig = null;
-    try {
-      const r = await fetch(`/config.json?_=${Date.now()}`, { cache: 'no-store' });
-      if (r.ok) liveConfig = await r.json();
-    } catch (err) {
-      // ignore — fallback to embedded config
-    }
+  navigator.serviceWorker.register(swFile).catch(err => {
+    console.warn('Service worker registration failed:', err);
+  });
 
-    const enableSW = (liveConfig?.enableSW ?? globalThis.SHOWDO_CONFIG?.enableSW);
-    if (enableSW === false || isLocalhost) {
-      console.debug('Service worker registration skipped (localhost or disabled by SHOWDO_CONFIG).');
-      return;
-    }
+  // Reload the page when the service worker signals that an update finished
+  // activating. We replace the current history entry with a cache-busted
+  // URL so the browser fetches fresh resources (best-effort).
+  // FIX: Removed the `controllerchange` listener that was causing a second
+  // reload race condition. A single reload triggered by SW_UPDATED is enough.
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    if (!event.data) return;
+    if (event.data.type === 'SW_UPDATED') {
+      // Guard against the message firing more than once in the same page load.
+      if (window.__swReloading) return;
+      window.__swReloading = true;
 
-    const swFileFromConfig = liveConfig?.serviceWorkerFile ?? globalThis.SHOWDO_CONFIG?.serviceWorkerFile;
-    const buildId = liveConfig?.buildId ?? globalThis.SHOWDO_CONFIG?.buildId;
-    const swUrl = swFileFromConfig || (buildId ? `service-worker.js?v=${encodeURIComponent(buildId)}` : 'service-worker.js');
-
-    let swReloading = false;
-    function handleSWUpdate() {
-      if (swReloading) return;
-      swReloading = true;
       const url = new URL(location.href);
       url.searchParams.set('_sw', Date.now());
       try {
         location.replace(url.toString());
-      } catch {
+      } catch (e) {
         location.reload();
       }
     }
-
-    navigator.serviceWorker.addEventListener('message', (event) => {
-      if (event.data?.type === 'SW_UPDATED') handleSWUpdate();
-    });
-    navigator.serviceWorker.addEventListener('controllerchange', handleSWUpdate);
-
-    try {
-      const reg = await navigator.serviceWorker.register(swUrl);
-      if (!reg) return;
-
-      if (reg.waiting) {
-        handleSWUpdate();
-        return;
-      }
-
-      reg.addEventListener('updatefound', () => {
-        const newWorker = reg.installing;
-        if (!newWorker) return;
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            handleSWUpdate();
-          }
-        });
-      });
-
-      try { if (typeof reg.update === 'function') reg.update(); } catch (err) { }
-    } catch (err) {
-      console.error('Service worker registration failed:', err);
-    }
-  })();
+  });
 }
