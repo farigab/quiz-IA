@@ -398,6 +398,51 @@ header h1 {
   font-size: 1.4rem;
 }
 
+/* Hourglass animation for async generation indicator */
+.hourglass {
+  display: inline-block;
+  margin-left: 6px;
+  transform-origin: 50% 50%;
+  animation: hourglass-tick 1.2s linear infinite;
+  will-change: transform, opacity;
+  font-size: 1.05em;
+}
+
+@keyframes hourglass-tick {
+  0% {
+    transform: translateY(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+
+  20% {
+    transform: translateY(-2px) rotate(12deg) scale(1.06);
+  }
+
+  40% {
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+
+  60% {
+    transform: translateY(2px) rotate(8deg) scale(1.02);
+  }
+
+  80% {
+    transform: translateY(0) rotate(-4deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hourglass {
+    animation: none;
+  }
+}
+
 #restartBtn {
   background: var(--accent);
   color: #fff;
