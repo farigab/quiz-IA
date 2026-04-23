@@ -370,11 +370,9 @@ if ('serviceWorker' in navigator) {
   // reload race condition. A single reload triggered by SW_UPDATED is enough.
   navigator.serviceWorker.addEventListener('message', (event) => {
     if (!event.data) return;
-    if (event.data.type === 'SW_UPDATED') {
-      // Guard against the message firing more than once in the same page load.
+    if (event.data.type === 'SW_UPDATED' || event.data.type === 'SW_UNREGISTERED') {
       if (window.__swReloading) return;
       window.__swReloading = true;
-
       const url = new URL(location.href);
       url.searchParams.set('_sw', Date.now());
       try {
