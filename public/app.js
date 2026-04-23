@@ -476,7 +476,8 @@ if ('serviceWorker' in navigator) {
   } else {
     const swBase = 'service-worker.js';
     const buildId = globalThis.SHOWDO_CONFIG?.buildId;
-    const swUrl = buildId ? `${swBase}?v=${encodeURIComponent(buildId)}` : swBase;
+    const swFileFromConfig = globalThis.SHOWDO_CONFIG?.serviceWorkerFile;
+    const swUrl = swFileFromConfig || (buildId ? `${swBase}?v=${encodeURIComponent(buildId)}` : swBase);
 
     let swReloading = false;
 

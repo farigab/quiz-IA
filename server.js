@@ -56,7 +56,9 @@ app.use((_req, res, next) => {
 
 // ── Cache-Control para Service Worker ─────────────────────────────────────────
 app.use((req, res, next) => {
-  if (req.path === '/service-worker.js') {
+  // Ensure any per-build service worker file (service-worker.<id>.js)
+  // or the legacy service-worker.js is served with no-cache headers.
+  if (req.path === '/service-worker.js' || req.path.startsWith('/service-worker.')) {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   }
   next();
