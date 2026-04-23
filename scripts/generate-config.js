@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const serverBase = process.env.SERVER_BASE || process.env.SHOWDO_SERVER_BASE || '';
 const outPath = path.join(process.cwd(), 'config.js');

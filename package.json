@@ -7,6 +7,7 @@
     "start": "dotenv -e .env -- npx http-server -c-1 . -p 8080",
     "build:sw": "node scripts/build-sw.js",
     "build": "npm run build:sw",
+    "build:pages": "npm run generate-config && npm run build",
     "generate": "node generate_questions.js --count 10",
     "generate-config": "node scripts/generate-config.js",
     "start:server": "node server.js",
