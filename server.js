@@ -14,6 +14,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Ensure the service worker file is always revalidated by the browser
+// so that updates are picked up promptly after a deploy.
+app.use((req, res, next) => {
+  if (req.path === '/service-worker.js') {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname)));
 app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
