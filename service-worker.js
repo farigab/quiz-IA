@@ -5,10 +5,8 @@
 const BUILD_ID = '__BUILD_ID__';
 const CACHE_NAME = `showdo-miau-${BUILD_ID}`;
 
-// FIX: self.__WB_MANIFEST is the injection point required by injectManifest.
-// At build time, Workbox replaces this with the versioned precache manifest
-// (array of {url, revision} objects). At dev time (no build), it falls back
-// to an empty array so the SW still loads without errors.
+// Workbox injects the versioned precache manifest here at build time.
+// Falls back to empty array in dev (no build step).
 const WB_PRECACHE = self.__WB_MANIFEST || [];
 
 const ASSETS = [
