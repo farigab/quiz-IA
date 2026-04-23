@@ -11,11 +11,33 @@ const ASSETS = [
 ];
 self.addEventListener('install', (event) => {
   globalThis.skipWaiting();
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(globalThis.clients.claim());
+  // Delete old caches, take control of clients, and notify them that a new
+  // service worker is active so the page can reload and pick up fresh files.
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
+      .then(() => globalThis.clients.claim())
+      .then(() => globalThis.clients.matchAll({ includeUncontrolled: true }))
+      .then(clients => {
+        for (const client of clients) {
+          try { client.postMessage({ type: 'SW_UPDATED' }); } catch (e) { /* best-effort */ }
+        }
+      })
+  );
+});
+
+// Allow pages to tell the worker to skipWaiting (useful during manual update flows)
+self.addEventListener('message', (event) => {
+  if (!event.data) return;
+  if (event.data.type === 'SKIP_WAITING') {
+    globalThis.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {

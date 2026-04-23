@@ -71,7 +71,7 @@ async function generate() {
 
       if (!text) throw new Error('A resposta da API não continha texto válido.');
 
-      const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleanedText = text.replaceAll('```json', '').replaceAll('```', '').trim();
       const parsed = JSON.parse(cleanedText);
       fs.writeFileSync('questions.json', JSON.stringify(parsed, null, 2), 'utf8');
       console.log('✅ questions.json criado via API do Gemini!');

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { GoogleAuth } = require('google-auth-library');
 require('dotenv').config();
-const path = require('path');
+const path = require('node:path');
 
 const app = express();
 app.use(cors());
@@ -78,7 +78,7 @@ function extractTextFromResponse(data) {
 function extractJSONFromText(text) {
   if (!text) return null;
   // Limpeza caso a IA devolva blocos markdown
-  const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+  const cleanedText = text.replaceAll('```json', '').replaceAll('```', '').trim();
   const start = cleanedText.indexOf('[');
   const end = cleanedText.lastIndexOf(']');
   if (start !== -1 && end !== -1 && end > start) {

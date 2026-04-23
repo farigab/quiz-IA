@@ -3,7 +3,7 @@ const NUM_QUESTIONS = 10;
 // Runtime-configurable server base. Create a `config.js` that sets:
 // window.SHOWDO_CONFIG = { serverBase: 'https://seu-backend.example.com' }
 const DEFAULT_LOCAL_SERVER = 'http://localhost:3000';
-const SERVER_BASE = (window.SHOWDO_CONFIG && window.SHOWDO_CONFIG.serverBase)
+const SERVER_BASE = (globalThis.SHOWDO_CONFIG?.serverBase)
   || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? DEFAULT_LOCAL_SERVER : '');
 
 const AUTO_ADVANCE_DELAY = 15000;
@@ -138,7 +138,7 @@ function showQuestion() {
 
     const label = document.createElement('span');
     label.className = 'choice-label';
-    label.textContent = String.fromCharCode(65 + idx);
+    label.textContent = String.fromCodePoint(65 + idx);
 
     const txt = document.createElement('span');
     txt.className = 'choice-text';
@@ -247,4 +247,29 @@ document.addEventListener('keydown', (e) => {
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js').catch(() => {});
+
+  // Reload the page when the service worker signals that an update finished
+  // activating. We replace the current history entry with a cache-busted
+  // URL so the browser fetches fresh resources (best-effort).
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    if (!event.data) return;
+    if (event.data.type === 'SW_UPDATED') {
+      const url = new URL(location.href);
+      url.searchParams.set('_sw', Date.now());
+      try {
+        location.replace(url.toString());
+      } catch (e) {
+        // fallback to a normal reload if replace fails
+        location.reload();
+      }
+    }
+  });
+
+  // As a fallback, reload when the controlling service worker changes.
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!window.__swReloading) {
+      window.__swReloading = true;
+      window.location.reload();
+    }
+  });
 }
