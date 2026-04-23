@@ -1,0 +1,12 @@
+# Impede agressivamente o cache do Service Worker (CRÍTICO)
+/service-worker.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Expires: 0
+
+# Força a revalidação do HTML, do config (buildId) e do manifesto
+/index.html
+  Cache-Control: no-cache, must-revalidate
+/config.js
+  Cache-Control: no-cache, must-revalidate
+/manifest.json
+  Cache-Control: no-cache, must-revalidate
