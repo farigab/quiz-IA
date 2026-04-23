@@ -1,163 +1,5 @@
-/* --- Reset & Variables --- */
-:root {
-  --bg-color: #f3f4f6;
-  --card-bg: #ffffff;
-  --accent: #4f46e5;
-  --accent-light: #e0e7ff;
-  --accent-hover: #4338ca;
-  --text-main: #111827;
-  --text-muted: #6b7280;
-  --success: #10b981;
-  --success-bg: #d1fae5;
-  --danger: #ef4444;
-  --danger-bg: #fee2e2;
-  --border-color: #e5e7eb;
-  --radius-lg: 20px;
-  --radius-md: 12px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  display: flex;
-  justify-content: center;
-}
-
-.app {
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 16px;
-}
-
-/* --- Header --- */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  padding: 0 4px;
-}
-
-header h1 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.5px;
-}
-
-.score {
-  font-size: 0.9rem;
-  font-weight: 600;
-  background: var(--card-bg);
-  padding: 6px 12px;
-  border-radius: 999px;
-  color: var(--accent);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--accent-light);
-}
-
-.theme-tag {
-  display: inline-block;
-  margin: 8px 0 16px 0;
-  padding: 6px 10px;
-  background: var(--accent-light);
-  color: var(--accent);
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-sm);
-  align-self: flex-start;
-}
-
-/* --- Screens --- */
-.screen {
-  background: var(--card-bg);
-  padding: 24px 20px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* --- Intro screen --- */
-#intro p {
-  color: var(--text-muted);
-  font-size: 1rem;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.theme-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-  position: relative;
-}
-
-.theme-card {
-  appearance: none;
-  background: #f9fafb;
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 18px 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-main);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.theme-card:active {
-  transform: scale(0.96);
-}
-
-.theme-card.selected {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
-}
-
-/*
- * .random-dice — merged from two separate blocks (was duplicated in original).
- * Combines grid placement, layout styles, and animation trigger.
- */
+/* --- Dado Aleatório --- */
 .random-dice {
-  grid-column: 1 / -1;
-  justify-self: center;
-  margin-top: 10px;
-  margin-bottom: 0;
   background: #fffbe7;
   border: 2px solid var(--accent);
   padding: 10px;
@@ -206,6 +48,170 @@ header h1 {
   }
 }
 
+/* styles.css - Modern Mobile-First UI */
+:root {
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --accent: #4f46e5;
+  --accent-light: #e0e7ff;
+  --accent-hover: #4338ca;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --border-color: #e5e7eb;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  /* Remove aquele brilho azul nativo ao tocar no ecrã */
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  /* Centra em ecrãs maiores */
+}
+
+/* O contentor principal simula o ecrã do telemóvel */
+.app {
+  width: 100%;
+  max-width: 480px;
+  /* Largura ideal para simular app mobile */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+}
+
+/* --- Cabeçalho --- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 4px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.score {
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--card-bg);
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--accent-light);
+}
+
+/* Tag que mostra o tema atualmente selecionado */
+.theme-tag {
+  display: inline-block;
+  margin: 8px 0 16px 0;
+  padding: 6px 10px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  align-self: flex-start;
+}
+
+/* --- Ecrãs / Cartões --- */
+.screen {
+  background: var(--card-bg);
+  padding: 24px 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- Tela Inicial (Temas) --- */
+#intro p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.theme-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.random-dice {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  margin-bottom: 0;
+  justify-self: center;
+}
+
+.theme-card {
+  appearance: none;
+  background: #f9fafb;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.theme-card:active {
+  transform: scale(0.96);
+  /* Efeito de "apertar" o botão real */
+}
+
+.theme-card.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
 .setting-hint {
   display: block;
   text-align: center;
@@ -214,7 +220,7 @@ header h1 {
   margin-top: auto;
 }
 
-/* --- Question screen --- */
+/* --- Ecrã de Perguntas --- */
 .status {
   display: flex;
   align-items: center;
@@ -253,7 +259,7 @@ header h1 {
   margin-bottom: 24px;
 }
 
-/* --- Choice buttons --- */
+/* --- Botões de Resposta --- */
 .choices {
   display: flex;
   flex-direction: column;
@@ -302,7 +308,7 @@ header h1 {
   line-height: 1.4;
 }
 
-/* Answer states */
+/* Estados de Resposta */
 .btn.choice.correct {
   background: var(--success-bg);
   border-color: var(--success);
@@ -326,7 +332,7 @@ header h1 {
   color: #fff;
 }
 
-/* --- Explanation & actions --- */
+/* --- Explicação e Ações --- */
 .explanation {
   margin-top: 20px;
   padding: 16px;
@@ -341,6 +347,7 @@ header h1 {
 
 .actions {
   margin-top: auto;
+  /* Empurra o botão para o fundo do cartão */
   padding-top: 24px;
 }
 
@@ -372,7 +379,7 @@ header h1 {
   transform: translateY(2px);
 }
 
-/* --- Final screen --- */
+/* --- Ecrã Final --- */
 #finalScreen {
   align-items: center;
   justify-content: center;
@@ -404,7 +411,7 @@ header h1 {
   margin-top: 20px;
 }
 
-/* --- Footer --- */
+/* --- Rodapé --- */
 footer {
   text-align: center;
   padding: 20px 0 10px;
@@ -413,7 +420,7 @@ footer {
   font-weight: 500;
 }
 
-/* --- Animations --- */
+/* --- Animações --- */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -442,7 +449,7 @@ footer {
   }
 }
 
-/* --- Responsive --- */
+/* Adaptação para tablets ou PC */
 @media (min-width: 600px) {
   .app {
     padding: 40px 16px;
@@ -453,6 +460,7 @@ footer {
   }
 }
 
+/* Mobile-specific improvements for small screens */
 @media (max-width: 420px) {
   .app {
     padding: 14px 12px;
@@ -466,6 +474,7 @@ footer {
     font-size: 1.2rem;
   }
 
+  /* Use single-column theme cards for narrow screens */
   .theme-cards {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -496,6 +505,7 @@ footer {
   }
 }
 
+/* Reintroduce 2-column theme grid on wider small screens */
 @media (min-width: 420px) and (max-width: 599px) {
   .theme-cards {
     grid-template-columns: repeat(2, 1fr);
