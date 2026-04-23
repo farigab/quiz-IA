@@ -123,11 +123,80 @@ async function startGame(theme) {
 
   if (theme) {
     questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… `;
-    const hg = document.createElement('span');
-    hg.className = 'hourglass';
-    hg.setAttribute('aria-hidden', 'true');
-    hg.textContent = '⏳';
-    questionEl.appendChild(hg);
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const uid = `hg${Math.random().toString(36).slice(2, 9)}`;
+
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('class', 'hourglass');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '1em');
+    svg.setAttribute('height', '1em');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+
+    const defs = document.createElementNS(svgNS, 'defs');
+    const clipTop = document.createElementNS(svgNS, 'clipPath');
+    clipTop.setAttribute('id', `hg-top-${uid}`);
+    const polyTop = document.createElementNS(svgNS, 'polygon');
+    polyTop.setAttribute('points', '6,2 18,2 12,10');
+    clipTop.appendChild(polyTop);
+    defs.appendChild(clipTop);
+
+    const clipBottom = document.createElementNS(svgNS, 'clipPath');
+    clipBottom.setAttribute('id', `hg-bottom-${uid}`);
+    const polyBottom = document.createElementNS(svgNS, 'polygon');
+    polyBottom.setAttribute('points', '6,22 18,22 12,14');
+    clipBottom.appendChild(polyBottom);
+    defs.appendChild(clipBottom);
+
+    svg.appendChild(defs);
+
+    const outline = document.createElementNS(svgNS, 'path');
+    outline.setAttribute('d', 'M7 2h10l-4 6 4 6H7l4-6-4-6z');
+    outline.setAttribute('fill', 'none');
+    outline.setAttribute('stroke', 'currentColor');
+    outline.setAttribute('stroke-width', '1.2');
+    outline.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(outline);
+
+    const gTop = document.createElementNS(svgNS, 'g');
+    gTop.setAttribute('class', 'sand-top');
+    gTop.setAttribute('clip-path', `url(#hg-top-${uid})`);
+    const rectTop = document.createElementNS(svgNS, 'rect');
+    rectTop.setAttribute('x', '6');
+    rectTop.setAttribute('y', '2');
+    rectTop.setAttribute('width', '12');
+    rectTop.setAttribute('height', '8');
+    rectTop.setAttribute('fill', 'currentColor');
+    rectTop.setAttribute('opacity', '0.95');
+    gTop.appendChild(rectTop);
+    svg.appendChild(gTop);
+
+    const stream = document.createElementNS(svgNS, 'rect');
+    stream.setAttribute('class', 'stream');
+    stream.setAttribute('x', '11.4');
+    stream.setAttribute('y', '9');
+    stream.setAttribute('width', '1.2');
+    stream.setAttribute('height', '6');
+    stream.setAttribute('fill', 'currentColor');
+    stream.setAttribute('opacity', '0.95');
+    stream.setAttribute('rx', '0.6');
+    svg.appendChild(stream);
+
+    const gBottom = document.createElementNS(svgNS, 'g');
+    gBottom.setAttribute('class', 'sand-bottom');
+    gBottom.setAttribute('clip-path', `url(#hg-bottom-${uid})`);
+    const rectBottom = document.createElementNS(svgNS, 'rect');
+    rectBottom.setAttribute('x', '6');
+    rectBottom.setAttribute('y', '14');
+    rectBottom.setAttribute('width', '12');
+    rectBottom.setAttribute('height', '8');
+    rectBottom.setAttribute('fill', 'currentColor');
+    rectBottom.setAttribute('opacity', '0.95');
+    gBottom.appendChild(rectBottom);
+    svg.appendChild(gBottom);
+
+    questionEl.appendChild(svg);
     choicesEl.innerHTML = '';
   }
 

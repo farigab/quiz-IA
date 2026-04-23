@@ -398,6 +398,117 @@ header h1 {
   font-size: 1.4rem;
 }
 
+/* Animated SVG hourglass shown while generating questions */
+.hourglass {
+  display: inline-block;
+  margin-left: 6px;
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: text-bottom;
+  color: var(--accent);
+  overflow: visible;
+}
+
+.hourglass .sand-top,
+.hourglass .sand-bottom,
+.hourglass .stream {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+.hourglass .sand-top {
+  transform-origin: 50% 24%;
+  animation: sandTop 1.6s linear infinite;
+}
+
+.hourglass .sand-bottom {
+  transform-origin: 50% 76%;
+  transform: scaleY(0);
+  animation: sandBottom 1.6s linear infinite;
+}
+
+.hourglass .stream {
+  animation: sandStream 1.6s linear infinite;
+  opacity: 0;
+}
+
+@keyframes sandTop {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  45% {
+    transform: scaleY(0);
+    opacity: 0.65;
+  }
+
+  55% {
+    transform: scaleY(0);
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes sandBottom {
+  0% {
+    transform: scaleY(0);
+    opacity: 0.4;
+  }
+
+  45% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  55% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sandStream {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+
+  25% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hourglass .sand-top,
+  .hourglass .sand-bottom,
+  .hourglass .stream {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Hourglass animation for async generation indicator */
 .hourglass {
   display: inline-block;
