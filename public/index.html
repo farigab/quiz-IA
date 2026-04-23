@@ -57,34 +57,51 @@
       if (!('serviceWorker' in navigator)) return;
 
       var STORAGE_KEY = 'showdo_build_id';
+      var SW_KEY = 'showdo_sw_file';
+
+      function nukeAndReload(newId, swFile) {
+        if (newId) localStorage.setItem(STORAGE_KEY, String(newId));
+        if (swFile) localStorage.setItem(SW_KEY, String(swFile));
+        Promise.all([
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            return Promise.all(regs.map(function (r) { return r.unregister(); }));
+          }),
+          caches.keys().then(function (keys) {
+            return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+          })
+        ]).then(function () {
+          location.reload(true);
+        });
+      }
 
       fetch('/config.json', { cache: 'no-store' })
         .then(function (r) { return r.json(); })
         .then(function (cfg) {
           var newId = cfg && cfg.buildId;
+          var swFile = cfg && cfg.serviceWorkerFile;
           if (!newId) return;
 
           var storedId = localStorage.getItem(STORAGE_KEY);
-          if (storedId === String(newId)) return; // same build, nothing to do
 
-          // New deploy detected — nuke everything then reload.
-          localStorage.setItem(STORAGE_KEY, String(newId));
+          // Check 1: new deploy detected
+          if (storedId !== String(newId)) {
+            nukeAndReload(newId, swFile);
+            return;
+          }
 
-          Promise.all([
-            // Unregister every SW scope
-            navigator.serviceWorker.getRegistrations().then(function (regs) {
-              return Promise.all(regs.map(function (r) { return r.unregister(); }));
-            }),
-            // Delete every cache
-            caches.keys().then(function (keys) {
-              return Promise.all(keys.map(function (k) { return caches.delete(k); }));
-            })
-          ]).then(function () {
-            // Hard reload — bypasses any remaining SW interception
-            location.reload(true);
+          // Check 2: same buildId but wrong SW still registered
+          // (happens when the first nuke attempt failed mid-reload)
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            var hasWrongSW = regs.some(function (r) {
+              var url = (r.active || r.installing || r.waiting || {}).scriptURL || '';
+              return swFile && !url.endsWith(swFile) && url.indexOf('service-worker') !== -1;
+            });
+            if (hasWrongSW) {
+              nukeAndReload(newId, swFile);
+            }
           });
         })
-        .catch(function () { /* network error — skip, normal load */ });
+        .catch(function () { /* network error — skip */ });
     })();
   </script>
 </head>
