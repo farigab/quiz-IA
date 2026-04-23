@@ -6,6 +6,23 @@
 
 const IS_VERSIONED = self.location.href.match(/service-worker\.\d+\.js/);
 
+// Workbox injects the versioned precache manifest here at build time.
+const WB_PRECACHE = self.__WB_MANIFEST || [];
+
+const BUILD_ID = '__BUILD_ID__';
+const CACHE_NAME = `showdo-miau-${BUILD_ID}`;
+
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/questions.json',
+  '/manifest.json',
+  '/icons/icon-192.svg',
+  '/icons/icon-512.svg'
+];
+
 self.addEventListener('install', (event) => {
   if (!IS_VERSIONED) {
     // Legacy unversioned SW — skip waiting so activate fires immediately.
@@ -13,7 +30,7 @@ self.addEventListener('install', (event) => {
     return;
   }
   self.skipWaiting();
-  const precacheUrls = (self.__WB_MANIFEST || []).map(e => (typeof e === 'string' ? e : e.url));
+  const precacheUrls = WB_PRECACHE.map(e => (typeof e === 'string' ? e : e.url));
   const allAssets = [...new Set([...ASSETS, ...precacheUrls])];
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(allAssets))
@@ -42,23 +59,6 @@ self.addEventListener('activate', (event) => {
       }))
   );
 });
-
-// Workbox injects the versioned precache manifest here at build time.
-const WB_PRECACHE = self.__WB_MANIFEST || [];
-
-const BUILD_ID = '__BUILD_ID__';
-const CACHE_NAME = `showdo-miau-${BUILD_ID}`;
-
-const ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/questions.json',
-  '/manifest.json',
-  '/icons/icon-192.svg',
-  '/icons/icon-512.svg'
-];
 
 self.addEventListener('message', (event) => {
   if (!event.data) return;
