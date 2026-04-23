@@ -4,6 +4,7 @@ const rateLimit = require('express-rate-limit');
 const { GoogleAuth } = require('google-auth-library');
 require('dotenv').config();
 const path = require('node:path');
+const fs = require('node:fs');
 
 const app = express();
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -97,6 +98,24 @@ app.use((req, res, next) => {
   }
 
   next();
+});
+
+// Fallback: quando um pedido ao service-worker versionado (service-worker.<id>.js)
+// chegar e o ficheiro não existir no disco (por exemplo build não incluiu o
+// ficheiro versionado), devolvemos o `service-worker.js` não-versionado.
+// Isso evita que clientes fiquem presos a um `serviceWorkerFile` apontando
+// para um ficheiro inexistente e facilita correção imediata em produção.
+app.get(/^\/service-worker\..*\.js$/, (req, res, next) => {
+  try {
+    const requested = req.path.replace(/^\//, '');
+    const fileOnDisk = path.join(__dirname, 'public', requested);
+    if (fs.existsSync(fileOnDisk)) return next();
+  } catch (err) {
+    // se houver erro a verificar o ficheiro, deixa passar para o static (retorna 404)
+    return next();
+  }
+
+  return res.sendFile(path.join(__dirname, 'public', 'service-worker.js'));
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
