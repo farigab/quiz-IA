@@ -47,5 +47,7 @@ coverage/
 # Criado por: npm run generate-config  ou  npm run build:pages
 config.js
 
-# Criado por: npm run build:sw  ou  npm start  (via Workbox)
-service-worker.js
+# service-worker.js gerado em public/ pelo build
+public/service-worker.js
+public/service-worker.*.js
+public/service-worker.*.js.map
