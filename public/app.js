@@ -469,28 +469,60 @@ document.addEventListener('keydown', (e) => {
 
 // ── Service Worker ─────────────────────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
-  const swBase = 'service-worker.js';
-  const buildId = globalThis.SHOWDO_CONFIG?.buildId;
-  const swUrl = buildId ? `${swBase}?v=${encodeURIComponent(buildId)}` : swBase;
-  navigator.serviceWorker.register(swUrl).catch(console.error);
+  const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const enableSW = globalThis.SHOWDO_CONFIG?.enableSW;
+  if (enableSW === false || isLocalhost) {
+    console.debug('Service worker registration skipped (localhost or disabled by SHOWDO_CONFIG).');
+  } else {
+    const swBase = 'service-worker.js';
+    const buildId = globalThis.SHOWDO_CONFIG?.buildId;
+    const swUrl = buildId ? `${swBase}?v=${encodeURIComponent(buildId)}` : swBase;
 
-  let swReloading = false;
+    let swReloading = false;
 
-  function handleSWUpdate() {
-    if (swReloading) return;
-    swReloading = true;
-    const url = new URL(location.href);
-    url.searchParams.set('_sw', Date.now());
-    try {
-      location.replace(url.toString());
-    } catch {
-      location.reload();
+    function handleSWUpdate() {
+      if (swReloading) return;
+      swReloading = true;
+      const url = new URL(location.href);
+      url.searchParams.set('_sw', Date.now());
+      try {
+        location.replace(url.toString());
+      } catch {
+        location.reload();
+      }
     }
+
+    // Add global listeners early so we don't miss a fast controllerchange/message
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data?.type === 'SW_UPDATED') handleSWUpdate();
+    });
+    navigator.serviceWorker.addEventListener('controllerchange', handleSWUpdate);
+
+    // Register and handle update lifecycle proactively so production clients
+    // receive a reload when a new service worker / precache is available.
+    navigator.serviceWorker.register(swUrl).then((reg) => {
+      if (!reg) return;
+
+      // If there's already a waiting worker, trigger update flow.
+      if (reg.waiting) {
+        handleSWUpdate();
+        return;
+      }
+
+      // Watch for a new installing worker and handle it when installed.
+      reg.addEventListener('updatefound', () => {
+        const newWorker = reg.installing;
+        if (!newWorker) return;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // New content available — reload the page to load updated assets.
+            handleSWUpdate();
+          }
+        });
+      });
+
+      // Ask the browser to check for updates right away.
+      try { if (typeof reg.update === 'function') reg.update(); } catch (err) { }
+    }).catch(console.error);
   }
-
-  navigator.serviceWorker.addEventListener('message', (event) => {
-    if (event.data?.type === 'SW_UPDATED') handleSWUpdate();
-  });
-
-  navigator.serviceWorker.addEventListener('controllerchange', handleSWUpdate);
 }
