@@ -83,7 +83,7 @@ async function startGame(theme) {
   finalScreen.classList.add('hidden');
 
   if (theme) {
-    questionEl.textContent = `A inteligência artificial está a criar perguntas fresquinhas sobre ${theme}... ⏳`;
+    questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… Isso pode levar alguns segundos.`;
     choicesEl.innerHTML = '';
   }
 

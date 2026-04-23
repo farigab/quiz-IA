@@ -1,4 +1,4 @@
-const CACHE_NAME = 'showdo-miau-v4';
+const CACHE_NAME = 'showdo-miau-v5';
 const ASSETS = [
   '/',
   '/index.html',
