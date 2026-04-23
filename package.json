@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prestart": "node scripts/build-sw.js",
     "start": "dotenv -e .env -- npx http-server -c-1 . -p 8080",
+    "build:sw": "node scripts/build-sw.js",
+    "build": "npm run build:sw",
     "generate": "node generate_questions.js --count 10",
     "generate-config": "node scripts/generate-config.js",
     "start:server": "node server.js",
@@ -17,6 +20,7 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
-    "dotenv-cli": "^5.0.1"
+    "dotenv-cli": "^5.0.1",
+    "workbox-build": "^6.5.4"
   }
 }
