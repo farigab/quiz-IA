@@ -38,6 +38,55 @@
 
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!--
+    SW INVALIDATION BOOTSTRAP
+    Runs synchronously before any other script so the old service worker
+    cannot intercept and serve stale assets on this page load.
+
+    Strategy:
+    1. Fetch /config.json (network, no-cache) to get the current buildId.
+    2. Compare with the buildId stored in localStorage from the last load.
+    3. If they differ (new deploy), unregister ALL service workers and clear
+       ALL caches, then hard-reload so the browser fetches everything fresh
+       from the network. The reload picks up the new SW on the clean slate.
+    4. If same buildId, do nothing — normal load continues.
+  -->
+  <script>
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+
+      var STORAGE_KEY = 'showdo_build_id';
+
+      fetch('/config.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (cfg) {
+          var newId = cfg && cfg.buildId;
+          if (!newId) return;
+
+          var storedId = localStorage.getItem(STORAGE_KEY);
+          if (storedId === String(newId)) return; // same build, nothing to do
+
+          // New deploy detected — nuke everything then reload.
+          localStorage.setItem(STORAGE_KEY, String(newId));
+
+          Promise.all([
+            // Unregister every SW scope
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+              return Promise.all(regs.map(function (r) { return r.unregister(); }));
+            }),
+            // Delete every cache
+            caches.keys().then(function (keys) {
+              return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+            })
+          ]).then(function () {
+            // Hard reload — bypasses any remaining SW interception
+            location.reload(true);
+          });
+        })
+        .catch(function () { /* network error — skip, normal load */ });
+    })();
+  </script>
 </head>
 
 <body>
