@@ -8,8 +8,8 @@ async function build() {
     const { count, size, warnings } = await generateSW({
       swDest,
       globDirectory: publicDir,
-      // Do not precache HTML/CSS/JS so CDN + querystring control freshness.
       globPatterns: [
+        'index.html',
         'questions.json',
         'manifest.json',
         'icons/**/*.*'
