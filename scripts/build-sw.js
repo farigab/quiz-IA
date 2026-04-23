@@ -8,13 +8,14 @@ async function build() {
     const { count, size, warnings } = await generateSW({
       swDest,
       globDirectory: publicDir,
+
+      // 1. MODIFICADO: Agora pegamos CSS, JS e HTML dinamicamente para o precache
       globPatterns: [
-        'index.html',
-        'questions.json',
-        'manifest.json',
+        '**/*.{html,css,js,json}',
         'icons/**/*.*'
       ],
       globIgnores: [
+        'service-worker.js', // IMPORTANTE: Impede que o SW faça cache dele mesmo
         'node_modules/**',
         'scripts/**',
         '.git/**',
@@ -24,6 +25,9 @@ async function build() {
       navigateFallbackDenylist: [/^\/api\//],
       clientsClaim: true,
       skipWaiting: true,
+
+      // 2. MODIFICADO: Removemos o app.js e styles.css daqui, pois agora
+      // eles estão no precache (globPatterns) e serão versionados automaticamente.
       runtimeCaching: [
         {
           urlPattern: /\/api\//,
@@ -32,33 +36,6 @@ async function build() {
             cacheName: 'api-runtime-cache',
             networkTimeoutSeconds: 10,
             expiration: { maxEntries: 50, maxAgeSeconds: 24 * 60 * 60 },
-            cacheableResponse: { statuses: [0, 200] }
-          }
-        },
-        {
-          urlPattern: /config\.js$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'config-runtime-cache',
-            expiration: { maxEntries: 5, maxAgeSeconds: 24 * 60 * 60 }
-          }
-        },
-        {
-          // Ensure JS and CSS are fetched from network first so updates propagate
-          urlPattern: /(^|\/)app\.js$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'static-runtime-cache',
-            expiration: { maxEntries: 20, maxAgeSeconds: 24 * 60 * 60 },
-            cacheableResponse: { statuses: [0, 200] }
-          }
-        },
-        {
-          urlPattern: /(^|\/)styles\.css$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'static-runtime-cache',
-            expiration: { maxEntries: 20, maxAgeSeconds: 24 * 60 * 60 },
             cacheableResponse: { statuses: [0, 200] }
           }
         }
