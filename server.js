@@ -85,12 +85,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // SPA fallback
 app.get(/^\/(?!api).*/, (req, res) => {
   if (path.extname(req.path)) return res.status(404).send('Not found');
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // ── Configuração ──────────────────────────────────────────────────────────────
