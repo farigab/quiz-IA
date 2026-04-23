@@ -1,3 +1,53 @@
+/* --- Dado Aleatório --- */
+.random-dice {
+  background: #fffbe7;
+  border: 2px solid var(--accent);
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.random-dice:active {
+  transform: scale(0.95);
+}
+
+.random-dice .dice-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.random-dice.rolling .dice-svg {
+  animation: dice-roll 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dice-roll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: rotate(90deg) scale(1.1);
+  }
+
+  40% {
+    transform: rotate(180deg) scale(0.95);
+  }
+
+  60% {
+    transform: rotate(270deg) scale(1.1);
+  }
+
+  80% {
+    transform: rotate(360deg) scale(1);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
 /* styles.css - Modern Mobile-First UI */
 :root {
   --bg-color: #f3f4f6;
@@ -109,6 +159,14 @@ header h1 {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-bottom: 24px;
+  position: relative;
+}
+
+.random-dice {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  margin-bottom: 0;
+  justify-self: center;
 }
 
 .theme-card {

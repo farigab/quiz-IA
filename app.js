@@ -23,6 +23,7 @@ const progressFill = document.getElementById('progressFill');
 const nextBtn = document.getElementById('nextBtn');
 const restartBtn = document.getElementById('restartBtn');
 const themeCards = Array.from(document.querySelectorAll('.theme-card'));
+const diceBtn = document.getElementById('random-dice');
 
 let questions = [];
 let selected = [];
@@ -35,7 +36,9 @@ let currentTheme = null;
 nextBtn.addEventListener('click', onNext);
 restartBtn.addEventListener('click', resetToIntro);
 
+
 themeCards.forEach(card => {
+  if (!card.dataset.theme) return; // ignora o dado
   card.addEventListener('click', () => {
     const theme = card.dataset.theme;
     themeCards.forEach(c => c.classList.remove('selected'));
@@ -43,6 +46,25 @@ themeCards.forEach(card => {
     startGame(theme);
   });
 });
+
+if (diceBtn) {
+  diceBtn.addEventListener('click', () => {
+    if (diceBtn.classList.contains('rolling')) return;
+    diceBtn.classList.add('rolling');
+    setTimeout(() => {
+      diceBtn.classList.remove('rolling');
+      // Seleciona um tema aleatório (exceto o próprio dado)
+      const validThemes = themeCards.filter(c => c.dataset.theme);
+      const randomIdx = Math.floor(Math.random() * validThemes.length);
+      const chosen = validThemes[randomIdx];
+      if (chosen) {
+        themeCards.forEach(c => c.classList.remove('selected'));
+        chosen.classList.add('selected');
+        startGame(chosen.dataset.theme);
+      }
+    }, 700); // tempo igual à animação CSS
+  });
+}
 
 async function startGame(theme) {
   currentTheme = theme;

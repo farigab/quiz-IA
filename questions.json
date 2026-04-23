@@ -1,158 +1,2602 @@
 [
   {
     "id": 1,
-    "question": "Qual é a capital do Brasil?",
+    "question": "Qual filme ganhou o primeiro Oscar de Melhor Animação?",
     "choices": [
-      "Brasília",
-      "Rio de Janeiro",
-      "São Paulo",
-      "Salvador"
+      "Shrek",
+      "Toy Story",
+      "Procurando Nemo",
+      "Monstros S.A."
     ],
     "answerIndex": 0,
-    "theme": "Geografia",
-    "explanation": "Brasília é a capital federal do Brasil desde 1960, quando foi construída para ser a nova capital."
+    "theme": "Cinema",
+    "explanation": "Shrek venceu a primeira categoria de Melhor Animação no Oscar de 2002."
   },
   {
     "id": 2,
-    "question": "Qual é o maior planeta do Sistema Solar?",
+    "question": "Quem dirigiu 'O Poderoso Chefão'?",
     "choices": [
-      "Júpiter",
-      "Saturno",
-      "Terra",
-      "Marte"
+      "Martin Scorsese",
+      "Francis Ford Coppola",
+      "Steven Spielberg",
+      "Stanley Kubrick"
     ],
-    "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "Júpiter é o maior planeta do Sistema Solar, com muito mais massa e diâmetro que os demais."
+    "answerIndex": 1,
+    "theme": "Cinema",
+    "explanation": "Francis Ford Coppola foi o diretor deste clássico de 1972."
   },
   {
     "id": 3,
-    "question": "Em que continente fica o Egito?",
+    "question": "Qual é a maior bilheteria da história do cinema (sem ajuste de inflação)?",
     "choices": [
-      "África",
-      "Ásia",
-      "Europa",
-      "América do Sul"
+      "Avatar",
+      "Vingadores: Ultimato",
+      "Titanic",
+      "Star Wars: O Despertar da Força"
     ],
     "answerIndex": 0,
-    "theme": "Geografia",
-    "explanation": "O Egito está no nordeste da África; apenas a península do Sinai fica na Ásia."
+    "theme": "Cinema",
+    "explanation": "Avatar (2009) detém o recorde de maior bilheteria global."
   },
   {
     "id": 4,
-    "question": "Qual elemento químico tem símbolo 'O'?",
+    "question": "Em que ano o primeiro filme da franquia 'Matrix' foi lançado?",
     "choices": [
-      "Oxigênio",
-      "Ouro",
-      "Prata",
-      "Hélio"
+      "1997",
+      "1998",
+      "1999",
+      "2000"
     ],
-    "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "O símbolo 'O' representa o elemento oxigênio na tabela periódica."
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "Matrix foi lançado em 1999, revolucionando os efeitos visuais."
   },
   {
     "id": 5,
-    "question": "Qual a cor resultante da mistura de azul e amarelo?",
+    "question": "Qual ator interpretou o Coringa no filme 'Batman: O Cavaleiro das Trevas'?",
     "choices": [
-      "Verde",
-      "Roxo",
-      "Laranja",
-      "Marrom"
+      "Joaquin Phoenix",
+      "Jared Leto",
+      "Jack Nicholson",
+      "Heath Ledger"
     ],
-    "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "Misturando pigmentos, azul e amarelo formam verde."
+    "answerIndex": 3,
+    "theme": "Cinema",
+    "explanation": "Heath Ledger interpretou o Coringa e ganhou um Oscar póstumo pelo papel."
   },
   {
     "id": 6,
-    "question": "Quanto é 7 × 8?",
+    "question": "Qual o nome da primeira longa-metragem colorida da Disney?",
     "choices": [
-      "54",
-      "56",
-      "58",
-      "64"
+      "Pinóquio",
+      "Branca de Neve e os Sete Anões",
+      "Dumbo",
+      "Bambi"
     ],
     "answerIndex": 1,
-    "theme": "Matemática",
-    "explanation": "7 × 8 = 56 (7 somado a si mesmo 8 vezes)."
+    "theme": "Cinema",
+    "explanation": "Lançado em 1937, foi o primeiro longa de animação tradicional do mundo."
   },
   {
     "id": 7,
-    "question": "Quem escreveu 'Dom Casmurro'?",
+    "question": "Quantos Oscars o filme 'Titanic' ganhou?",
     "choices": [
-      "Machado de Assis",
-      "Jorge Amado",
-      "Carlos Drummond de Andrade",
-      "Clarice Lispector"
+      "9",
+      "10",
+      "11",
+      "12"
     ],
-    "answerIndex": 0,
-    "theme": "Literatura",
-    "explanation": "Machado de Assis, autor brasileiro do século XIX, escreveu 'Dom Casmurro'."
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "Titanic ganhou 11 Oscars, empatando com Ben-Hur e O Senhor dos Anéis: O Retorno do Rei."
   },
   {
     "id": 8,
-    "question": "Qual a moeda do Japão?",
+    "question": "Qual filme brasileiro foi indicado ao Oscar de Melhor Filme Estrangeiro em 1999?",
     "choices": [
-      "Yen",
-      "Won",
-      "Dólar",
-      "Euro"
+      "Cidade de Deus",
+      "Central do Brasil",
+      "O Quatrilho",
+      "O Que É Isso, Companheiro?"
     ],
-    "answerIndex": 0,
-    "theme": "Geografia",
-    "explanation": "O yen (¥) é a moeda oficial do Japão."
+    "answerIndex": 1,
+    "theme": "Cinema",
+    "explanation": "Central do Brasil representou o país e rendeu indicação a Fernanda Montenegro."
   },
   {
     "id": 9,
-    "question": "Qual é a velocidade aproximada do som no ar (m/s)?",
+    "question": "Quem é o criador da saga 'Star Wars'?",
     "choices": [
-      "340",
-      "150",
-      "1000",
-      "299792"
+      "George Lucas",
+      "J.J. Abrams",
+      "Steven Spielberg",
+      "Peter Jackson"
     ],
     "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "A velocidade do som no ar, a cerca de 20°C, é aproximadamente 343 m/s; 340 m/s é uma aproximação comum."
+    "theme": "Cinema",
+    "explanation": "George Lucas criou a franquia em 1977."
   },
   {
     "id": 10,
-    "question": "Que gás é mais abundante na atmosfera terrestre?",
+    "question": "Qual é o nome do planeta natal de Superman?",
     "choices": [
-      "Nitrogênio",
-      "Oxigênio",
-      "Hélio",
-      "Dióxido de Carbono"
+      "Krypton",
+      "Vulcan",
+      "Tatooine",
+      "Asgard"
     ],
     "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "A atmosfera terrestre é composta principalmente por nitrogênio (~78%), seguido por oxigênio."
+    "theme": "Cinema",
+    "explanation": "Superman nasceu no planeta fictício Krypton."
   },
   {
     "id": 11,
-    "question": "Qual órgão humano filtra o sangue e produz urina?",
+    "question": "Qual estúdio de animação japonês produziu 'A Viagem de Chihiro'?",
     "choices": [
-      "Rim",
-      "Fígado",
-      "Pulmão",
-      "Coração"
+      "Toei Animation",
+      "Kyoto Animation",
+      "Studio Ghibli",
+      "Madhouse"
     ],
-    "answerIndex": 0,
-    "theme": "Ciências",
-    "explanation": "Os rins filtram o sangue e produzem urina como parte do sistema urinário."
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "O Studio Ghibli, fundado por Hayao Miyazaki e Isao Takahata, produziu a obra."
   },
   {
     "id": 12,
-    "question": "Quantos segundos tem um minuto?",
+    "question": "Qual destes filmes foi dirigido por Quentin Tarantino?",
     "choices": [
-      "60",
+      "Clube da Luta",
+      "Pulp Fiction",
+      "Se7en",
+      "O Sexto Sentido"
+    ],
+    "answerIndex": 1,
+    "theme": "Cinema",
+    "explanation": "Pulp Fiction (1994) é uma das obras mais aclamadas de Tarantino."
+  },
+  {
+    "id": 13,
+    "question": "Em 'De Volta Para o Futuro', qual a velocidade necessária para o DeLorean viajar no tempo?",
+    "choices": [
+      "88 mph",
+      "98 mph",
+      "108 mph",
+      "78 mph"
+    ],
+    "answerIndex": 0,
+    "theme": "Cinema",
+    "explanation": "O carro precisa atingir 88 milhas por hora para viajar no tempo."
+  },
+  {
+    "id": 14,
+    "question": "Qual foi o primeiro filme do Universo Cinematográfico Marvel (MCU)?",
+    "choices": [
+      "O Incrível Hulk",
+      "Thor",
+      "Capitão América",
+      "Homem de Ferro"
+    ],
+    "answerIndex": 3,
+    "theme": "Cinema",
+    "explanation": "Homem de Ferro, lançado em 2008, deu início ao MCU."
+  },
+  {
+    "id": 15,
+    "question": "Quem faz a voz de Darth Vader em inglês na trilogia original de Star Wars?",
+    "choices": [
+      "David Prowse",
+      "James Earl Jones",
+      "Mark Hamill",
+      "Harrison Ford"
+    ],
+    "answerIndex": 1,
+    "theme": "Cinema",
+    "explanation": "Enquanto David Prowse vestia o traje, James Earl Jones dublou o personagem."
+  },
+  {
+    "id": 16,
+    "question": "Qual é a verdadeira identidade do Batman?",
+    "choices": [
+      "Clark Kent",
+      "Peter Parker",
+      "Bruce Wayne",
+      "Tony Stark"
+    ],
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "O bilionário Bruce Wayne é a identidade secreta do Batman."
+  },
+  {
+    "id": 17,
+    "question": "Que animal é o protagonista de 'O Rei Leão'?",
+    "choices": [
+      "Tigre",
+      "Guepardo",
+      "Leão",
+      "Pantera"
+    ],
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "Simba é um leão que precisa recuperar seu trono."
+  },
+  {
+    "id": 18,
+    "question": "Qual diretor é conhecido pelo filme 'O Iluminado' (1980)?",
+    "choices": [
+      "Alfred Hitchcock",
+      "Stanley Kubrick",
+      "Ridley Scott",
+      "David Fincher"
+    ],
+    "answerIndex": 1,
+    "theme": "Cinema",
+    "explanation": "Stanley Kubrick dirigiu a adaptação da obra de Stephen King."
+  },
+  {
+    "id": 19,
+    "question": "Qual filme tem o famoso monólogo 'Lágrimas na Chuva'?",
+    "choices": [
+      "Blade Runner",
+      "O Exterminador do Futuro",
+      "Alien",
+      "Mad Max"
+    ],
+    "answerIndex": 0,
+    "theme": "Cinema",
+    "explanation": "O replicante Roy Batty recita o poema em Blade Runner (1982)."
+  },
+  {
+    "id": 20,
+    "question": "Quem interpretou a Mulher-Maravilha no filme solo de 2017?",
+    "choices": [
+      "Scarlett Johansson",
+      "Brie Larson",
+      "Gal Gadot",
+      "Margot Robbie"
+    ],
+    "answerIndex": 2,
+    "theme": "Cinema",
+    "explanation": "A atriz israelense Gal Gadot deu vida à heroína."
+  },
+  {
+    "id": 21,
+    "question": "Qual a partícula subatômica com carga negativa?",
+    "choices": [
+      "Próton",
+      "Nêutron",
+      "Elétron",
+      "Pósitron"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "O elétron é a partícula que orbita o núcleo atômico e possui carga negativa."
+  },
+  {
+    "id": 22,
+    "question": "Qual é a fórmula química da água?",
+    "choices": [
+      "H2O",
+      "CO2",
+      "O2",
+      "NaCl"
+    ],
+    "answerIndex": 0,
+    "theme": "Ciências",
+    "explanation": "A molécula de água é composta por dois átomos de hidrogênio e um de oxigênio."
+  },
+  {
+    "id": 23,
+    "question": "Qual o planeta mais próximo do Sol?",
+    "choices": [
+      "Vênus",
+      "Terra",
+      "Marte",
+      "Mercúrio"
+    ],
+    "answerIndex": 3,
+    "theme": "Ciências",
+    "explanation": "Mercúrio é o primeiro planeta do Sistema Solar em ordem de distância do Sol."
+  },
+  {
+    "id": 24,
+    "question": "Qual é a unidade de medida de força no Sistema Internacional?",
+    "choices": [
+      "Joule",
+      "Newton",
+      "Watt",
+      "Pascal"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "O Newton (N) é a unidade que mede a força."
+  },
+  {
+    "id": 25,
+    "question": "Quem propôs a Teoria da Relatividade?",
+    "choices": [
+      "Isaac Newton",
+      "Galileu Galilei",
+      "Albert Einstein",
+      "Nikola Tesla"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "Albert Einstein propôs a Teoria da Relatividade Geral e Restrita."
+  },
+  {
+    "id": 26,
+    "question": "O que a botânica estuda?",
+    "choices": [
+      "Animais",
+      "Plantas",
+      "Rochas",
+      "Estrelas"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "A botânica é o ramo da biologia que estuda a vida das plantas."
+  },
+  {
+    "id": 27,
+    "question": "Qual o estado físico da matéria onde as partículas estão mais afastadas e desordenadas?",
+    "choices": [
+      "Sólido",
+      "Líquido",
+      "Gasoso",
+      "Plasma"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "No estado gasoso, as partículas têm grande liberdade de movimento e estão espalhadas."
+  },
+  {
+    "id": 28,
+    "question": "Qual organela é responsável pela respiração celular?",
+    "choices": [
+      "Ribossomo",
+      "Lisossomo",
+      "Mitocôndria",
+      "Complexo de Golgi"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "A mitocôndria produz a energia (ATP) necessária para a célula."
+  },
+  {
+    "id": 29,
+    "question": "Qual o metal cujo símbolo químico é Fe?",
+    "choices": [
+      "Fósforo",
+      "Flúor",
+      "Ferro",
+      "Frâncio"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "Do latim 'Ferrum', Fe é o símbolo do elemento Ferro."
+  },
+  {
+    "id": 30,
+    "question": "Qual foi o primeiro ser vivo a viajar para o espaço?",
+    "choices": [
+      "Um macaco",
+      "Um cão",
+      "Um rato",
+      "Um humano"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "A cadela Laika foi enviada ao espaço pela União Soviética em 1957."
+  },
+  {
+    "id": 31,
+    "question": "Qual doença é causada pela falta de Vitamina C?",
+    "choices": [
+      "Raquitismo",
+      "Escorbuto",
+      "Anemia",
+      "Beribéri"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "O escorbuto é a doença resultante da deficiência severa de vitamina C."
+  },
+  {
+    "id": 32,
+    "question": "Qual tipo de rocha é formada pelo resfriamento do magma?",
+    "choices": [
+      "Sedimentar",
+      "Metamórfica",
+      "Ígnea",
+      "Fóssil"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "As rochas ígneas ou magmáticas se formam pela solidificação do magma."
+  },
+  {
+    "id": 33,
+    "question": "O que mede um anemômetro?",
+    "choices": [
+      "Pressão atmosférica",
+      "Velocidade do vento",
+      "Umidade do ar",
+      "Temperatura"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "O anemômetro é o instrumento utilizado para medir a velocidade do vento."
+  },
+  {
+    "id": 34,
+    "question": "Quantos cromossomos tem uma célula somática humana normal?",
+    "choices": [
+      "23",
+      "46",
+      "44",
+      "48"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "O ser humano possui 46 cromossomos (23 pares) em suas células somáticas."
+  },
+  {
+    "id": 35,
+    "question": "Qual é o osso mais longo do corpo humano?",
+    "choices": [
+      "Tíbia",
+      "Fíbula",
+      "Fêmur",
+      "Úmero"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "O fêmur, localizado na coxa, é o maior e mais resistente osso do corpo."
+  },
+  {
+    "id": 36,
+    "question": "Qual força nos mantém no chão?",
+    "choices": [
+      "Magnetismo",
+      "Fricção",
+      "Inércia",
+      "Gravidade"
+    ],
+    "answerIndex": 3,
+    "theme": "Ciências",
+    "explanation": "A gravidade é a força de atração que a Terra exerce sobre os corpos."
+  },
+  {
+    "id": 37,
+    "question": "O DNA tem formato de quê?",
+    "choices": [
+      "Hélice simples",
+      "Dupla hélice",
+      "Círculo",
+      "Quadrado"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "O DNA possui uma estrutura em forma de dupla hélice."
+  },
+  {
+    "id": 38,
+    "question": "Qual a temperatura de ebulição da água ao nível do mar (Celsius)?",
+    "choices": [
+      "90",
       "100",
-      "30",
+      "110",
       "120"
+    ],
+    "answerIndex": 1,
+    "theme": "Ciências",
+    "explanation": "Ao nível do mar, a água entra em ebulição aos 100°C."
+  },
+  {
+    "id": 39,
+    "question": "O processo das plantas criarem seu próprio alimento chama-se:",
+    "choices": [
+      "Digestão",
+      "Respiração",
+      "Fotossíntese",
+      "Transpiração"
+    ],
+    "answerIndex": 2,
+    "theme": "Ciências",
+    "explanation": "Através da fotossíntese, as plantas convertem luz solar em energia."
+  },
+  {
+    "id": 40,
+    "question": "O centro do átomo é chamado de:",
+    "choices": [
+      "Núcleo",
+      "Nuvem eletrônica",
+      "Camada de valência",
+      "Próton"
+    ],
+    "answerIndex": 0,
+    "theme": "Ciências",
+    "explanation": "O núcleo é a parte central e densa do átomo, contendo prótons e nêutrons."
+  },
+  {
+    "id": 41,
+    "question": "Na contabilidade, O que são 'Ativos'?",
+    "choices": [
+      "Obrigações da empresa",
+      "Bens e direitos da empresa",
+      "Despesas do mês",
+      "Patrimônio Líquido"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Ativos representam todos os bens e direitos que uma empresa possui."
+  },
+  {
+    "id": 42,
+    "question": "A equação fundamental da contabilidade é:",
+    "choices": [
+      "Ativo = Passivo + Patrimônio Líquido",
+      "Ativo = Passivo - Patrimônio Líquido",
+      "Passivo = Ativo + Patrimônio Líquido",
+      "Lucro = Ativo - Passivo"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "A soma do Passivo com o Patrimônio Líquido deve ser sempre igual ao Ativo."
+  },
+  {
+    "id": 43,
+    "question": "O método das partidas dobradas afirma que:",
+    "choices": [
+      "Para cada débito há um crédito de igual valor",
+      "Todo ativo tem o dobro do valor do passivo",
+      "Os lançamentos devem ser feitos duas vezes",
+      "Toda despesa gera duas receitas"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "Criado por Luca Pacioli, estabelece que não há devedor sem credor."
+  },
+  {
+    "id": 44,
+    "question": "O que significa a sigla DRE?",
+    "choices": [
+      "Demonstração de Retenção e Encargos",
+      "Demonstração do Resultado do Exercício",
+      "Diário de Registros e Eventos",
+      "Documento de Receitas Extraordinárias"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "A DRE evidencia se as operações da empresa geraram lucro ou prejuízo."
+  },
+  {
+    "id": 45,
+    "question": "Os fornecedores a pagar são classificados no balanço patrimonial como:",
+    "choices": [
+      "Ativo Circulante",
+      "Passivo Circulante",
+      "Patrimônio Líquido",
+      "Despesa Operacional"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Obrigações com fornecedores de curto prazo ficam no Passivo Circulante."
+  },
+  {
+    "id": 46,
+    "question": "O que é Patrimônio Líquido?",
+    "choices": [
+      "O caixa da empresa",
+      "A diferença positiva entre Ativos e Passivos",
+      "O total de dívidas da empresa",
+      "O valor de venda da empresa"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Representa a riqueza efetiva da entidade (Ativo menos Passivo Exigível)."
+  },
+  {
+    "id": 47,
+    "question": "Depreciação é a perda de valor de qual tipo de ativo?",
+    "choices": [
+      "Imobilizado",
+      "Intangível",
+      "Circulante",
+      "Financeiro"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "A depreciação refere-se à perda de valor de bens tangíveis (imobilizados) pelo uso ou tempo."
+  },
+  {
+    "id": 48,
+    "question": "Aumentar a conta de 'Caixa' (Ativo) exige um lançamento a:",
+    "choices": [
+      "Crédito",
+      "Débito",
+      "Estorno",
+      "Provisão"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Contas de Ativo têm natureza devedora e aumentam com Débitos."
+  },
+  {
+    "id": 49,
+    "question": "O Princípio da Entidade na contabilidade significa que:",
+    "choices": [
+      "O patrimônio da empresa não se mistura com o dos sócios",
+      "A empresa durará para sempre",
+      "As receitas devem ser registradas no ato do recebimento",
+      "Todo registro deve ter um documento em papel"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "A entidade é autônoma, separando os bens pessoais dos sócios do patrimônio empresarial."
+  },
+  {
+    "id": 50,
+    "question": "Qual demonstração mostra a posição financeira da empresa em uma data específica?",
+    "choices": [
+      "DRE",
+      "DFC",
+      "Balanço Patrimonial",
+      "DMPL"
+    ],
+    "answerIndex": 2,
+    "theme": "Contabilidade",
+    "explanation": "O Balanço Patrimonial é uma 'fotografia' financeira da empresa em dada data."
+  },
+  {
+    "id": 51,
+    "question": "O que compõe o Ativo Intangível?",
+    "choices": [
+      "Máquinas e equipamentos",
+      "Marcas, patentes e softwares",
+      "Estoque para venda",
+      "Dinheiro em caixa"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Bens que não possuem existência física, mas geram valor econômico."
+  },
+  {
+    "id": 52,
+    "question": "Receitas antecipadas são classificadas como:",
+    "choices": [
+      "Passivo",
+      "Ativo",
+      "Patrimônio Líquido",
+      "Despesa"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "Como o serviço ainda não foi prestado, é uma obrigação (Passivo) com o cliente."
+  },
+  {
+    "id": 53,
+    "question": "Capital Social é registrado em qual grupo do Balanço?",
+    "choices": [
+      "Ativo Não Circulante",
+      "Passivo Circulante",
+      "Patrimônio Líquido",
+      "Ativo Circulante"
+    ],
+    "answerIndex": 2,
+    "theme": "Contabilidade",
+    "explanation": "O Capital Social representa o investimento inicial dos sócios e fica no PL."
+  },
+  {
+    "id": 54,
+    "question": "Amortização é semelhante à depreciação, mas aplica-se a:",
+    "choices": [
+      "Bens imobilizados",
+      "Bens intangíveis com vida útil definida",
+      "Ações de outras empresas",
+      "Empréstimos bancários (juros)"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "Na contabilidade, intangíveis sofrem amortização, e não depreciação."
+  },
+  {
+    "id": 55,
+    "question": "O Regime de Competência reconhece as receitas e despesas quando:",
+    "choices": [
+      "O fato gerador ocorre",
+      "O dinheiro entra no caixa",
+      "O mês termina",
+      "Os sócios autorizam"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "A contabilidade registra os eventos na data de ocorrência, independentemente do pagamento."
+  },
+  {
+    "id": 56,
+    "question": "Lucro Bruto é o resultado de:",
+    "choices": [
+      "Receita Líquida menos Custo das Mercadorias Vendidas",
+      "Receita Líquida menos Impostos",
+      "Lucro Operacional menos Despesas",
+      "Ativo menos Passivo"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "O lucro bruto é a diferença direta entre as vendas e o custo daquelas vendas."
+  },
+  {
+    "id": 57,
+    "question": "Contas de Despesa possuem saldo de natureza:",
+    "choices": [
+      "Credora",
+      "Devedora",
+      "Nula",
+      "Variável"
+    ],
+    "answerIndex": 1,
+    "theme": "Contabilidade",
+    "explanation": "As despesas reduzem o Patrimônio Líquido, tendo, portanto, natureza devedora."
+  },
+  {
+    "id": 58,
+    "question": "Qual das opções é um Imposto Indireto (tributo sobre consumo)?",
+    "choices": [
+      "Imposto de Renda (IRPF)",
+      "IPVA",
+      "ICMS",
+      "IPTU"
+    ],
+    "answerIndex": 2,
+    "theme": "Contabilidade",
+    "explanation": "O ICMS é embutido no preço dos produtos, sendo um imposto indireto."
+  },
+  {
+    "id": 59,
+    "question": "O Livro Diário registra os fatos contábeis em ordem:",
+    "choices": [
+      "Alfabética",
+      "Por valor crescente",
+      "Cronológica",
+      "Por departamento"
+    ],
+    "answerIndex": 2,
+    "theme": "Contabilidade",
+    "explanation": "O Diário registra as operações dia a dia, em ordem cronológica."
+  },
+  {
+    "id": 60,
+    "question": "O Fluxo de Caixa (DFC) divide as atividades da empresa em:",
+    "choices": [
+      "Operacionais, Investimento e Financiamento",
+      "Ativas, Passivas e Neutras",
+      "Internas, Externas e Mistas",
+      "Abertas, Fechadas e Livres"
+    ],
+    "answerIndex": 0,
+    "theme": "Contabilidade",
+    "explanation": "Estas são as três categorias exigidas para a Demonstração dos Fluxos de Caixa."
+  },
+  {
+    "id": 61,
+    "question": "Na aferição da pressão arterial, o valor mais alto chama-se pressão:",
+    "choices": [
+      "Diastólica",
+      "Sistólica",
+      "Média",
+      "Venosa"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "A pressão sistólica reflete a força da contração do coração (sístole)."
+  },
+  {
+    "id": 62,
+    "question": "Qual é a via de administração intramuscular no músculo deltoide (ombro)?",
+    "choices": [
+      "IM",
+      "EV",
+      "SC",
+      "VO"
+    ],
+    "answerIndex": 0,
+    "theme": "Enfermagem",
+    "explanation": "A via intramuscular (IM) injeta o medicamento profundamente no músculo."
+  },
+  {
+    "id": 63,
+    "question": "Bradicardia significa que os batimentos cardíacos estão:",
+    "choices": [
+      "Acelerados",
+      "Irregulares",
+      "Lentos",
+      "Ausentes"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "Bradicardia é a frequência cardíaca abaixo do valor normal (geralmente <60 bpm)."
+  },
+  {
+    "id": 64,
+    "question": "A esterilização de materiais na autoclave utiliza qual princípio?",
+    "choices": [
+      "Calor seco",
+      "Calor úmido sob pressão",
+      "Radiação",
+      "Produtos químicos"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "A autoclave usa vapor d'água sob pressão para destruir microrganismos."
+  },
+  {
+    "id": 65,
+    "question": "Quem é considerada a precursora da enfermagem moderna?",
+    "choices": [
+      "Ana Néri",
+      "Wanda Horta",
+      "Florence Nightingale",
+      "Mary Seacole"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "Florence Nightingale revolucionou a área durante a Guerra da Crimeia."
+  },
+  {
+    "id": 66,
+    "question": "Febre é o termo popular para:",
+    "choices": [
+      "Hipotermia",
+      "Hipertermia ou Pirexia",
+      "Hiperemia",
+      "Hipóxia"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "A elevação da temperatura corporal é chamada de pirexia ou hipertermia."
+  },
+  {
+    "id": 67,
+    "question": "Hipoglicemia é a baixa concentração no sangue de:",
+    "choices": [
+      "Oxigênio",
+      "Potássio",
+      "Glicose",
+      "Sódio"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "A hipoglicemia ocorre quando os níveis de açúcar (glicose) caem demais."
+  },
+  {
+    "id": 68,
+    "question": "A técnica de Ressuscitação Cardiopulmonar (RCP) combina:",
+    "choices": [
+      "Compressões torácicas e ventilações",
+      "Massagem e medicação",
+      "Choque elétrico apenas",
+      "Elevação das pernas e respiração"
+    ],
+    "answerIndex": 0,
+    "theme": "Enfermagem",
+    "explanation": "A RCP padrão intercala compressões para circulação com ventilação pulmonar."
+  },
+  {
+    "id": 69,
+    "question": "Qual é a coloração do descarte para materiais perfurocortantes no Brasil?",
+    "choices": [
+      "Preto",
+      "Branco",
+      "Amarelo",
+      "Vermelho"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "Caixas de perfurocortantes (como a Descarpack) têm identificação na cor amarela."
+  },
+  {
+    "id": 70,
+    "question": "O que significa 'jejum npo' prescrito a um paciente?",
+    "choices": [
+      "Nada por via oral",
+      "Nova prescrição oral",
+      "Nutrição por sonda oral",
+      "Não parar oxigênio"
+    ],
+    "answerIndex": 0,
+    "theme": "Enfermagem",
+    "explanation": "NPO vem do latim 'Nil per os' e significa 'Nada por via oral'."
+  },
+  {
+    "id": 71,
+    "question": "Um paciente apresentando cianose estará com a pele:",
+    "choices": [
+      "Amarelada",
+      "Avermelhada",
+      "Pálida",
+      "Azulada"
+    ],
+    "answerIndex": 3,
+    "theme": "Enfermagem",
+    "explanation": "A cianose (tom azul/arroxeado) indica baixa oxigenação no sangue."
+  },
+  {
+    "id": 72,
+    "question": "Qual é o volume normal de urina esperado de um adulto em 24h?",
+    "choices": [
+      "100 a 300 ml",
+      "800 a 2000 ml",
+      "3 a 5 litros",
+      "5 a 10 litros"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "Geralmente varia de 800ml a 2L diários, dependendo da hidratação."
+  },
+  {
+    "id": 73,
+    "question": "A vacina BCG protege principalmente contra formas graves de:",
+    "choices": [
+      "Tuberculose",
+      "Poliomielite",
+      "Sarampo",
+      "Hepatite B"
+    ],
+    "answerIndex": 0,
+    "theme": "Enfermagem",
+    "explanation": "Aplicada em recém-nascidos, previne as formas graves da tuberculose."
+  },
+  {
+    "id": 74,
+    "question": "Dispneia é o termo técnico para:",
+    "choices": [
+      "Dificuldade para engolir",
+      "Dificuldade para respirar",
+      "Dor ao urinar",
+      "Coceira intensa"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "A dispneia é a sensação subjetiva de falta de ar ou dificuldade respiratória."
+  },
+  {
+    "id": 75,
+    "question": "Ao avaliar os sinais vitais, a frequência respiratória normal de um adulto (irpm) é:",
+    "choices": [
+      "8 a 10",
+      "12 a 20",
+      "25 a 30",
+      "30 a 40"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "O padrão respiratório eutrófico para adultos saudáveis é de 12 a 20 irpm."
+  },
+  {
+    "id": 76,
+    "question": "A sigla 'SNE' refere-se a qual dispositivo?",
+    "choices": [
+      "Soro nas extremidades",
+      "Sonda nasoenteral",
+      "Sonda nasogástrica exclusiva",
+      "Sistema nervoso estimulado"
+    ],
+    "answerIndex": 1,
+    "theme": "Enfermagem",
+    "explanation": "Sonda Nasoenteral, usada para nutrição chegando até o intestino."
+  },
+  {
+    "id": 77,
+    "question": "Qual é o local padrão para medir o pulso de rotina em adultos?",
+    "choices": [
+      "Carotídeo",
+      "Braquial",
+      "Radial",
+      "Femoral"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "A artéria radial (no pulso) é o local mais prático e comum em pacientes estáveis."
+  },
+  {
+    "id": 78,
+    "question": "Uma infecção adquirida após a admissão do paciente no hospital é chamada de:",
+    "choices": [
+      "Comunitária",
+      "Hereditária",
+      "Hospitalar (ou relacionada à assistência)",
+      "Idiopática"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "É a infecção cujas evidências clínicas se manifestam após a internação."
+  },
+  {
+    "id": 79,
+    "question": "Qual procedimento evita a transmissão cruzada de microrganismos?",
+    "choices": [
+      "Lavagem das mãos",
+      "Uso de uniformes coloridos",
+      "Manter portas abertas",
+      "Aumentar ar-condicionado"
+    ],
+    "answerIndex": 0,
+    "theme": "Enfermagem",
+    "explanation": "A higienização das mãos é a medida mais importante para o controle de infecções."
+  },
+  {
+    "id": 80,
+    "question": "Hemoptise refere-se à presença de sangue na:",
+    "choices": [
+      "Urina",
+      "Fezes",
+      "Secreção respiratória (tosse)",
+      "Vômito"
+    ],
+    "answerIndex": 2,
+    "theme": "Enfermagem",
+    "explanation": "Hemoptise é a expectoração de sangue proveniente do trato respiratório."
+  },
+  {
+    "id": 81,
+    "question": "Qual é o rio mais longo do mundo?",
+    "choices": [
+      "Rio Amazonas",
+      "Rio Nilo",
+      "Rio Yangtzé",
+      "Rio Mississipi"
+    ],
+    "answerIndex": 0,
+    "theme": "Geografia",
+    "explanation": "Estudos recentes apontam o rio Amazonas como o mais longo, ultrapassando o Nilo."
+  },
+  {
+    "id": 82,
+    "question": "O Deserto do Saara fica em qual continente?",
+    "choices": [
+      "Ásia",
+      "Oceania",
+      "África",
+      "América do Sul"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "O Saara é o maior deserto quente do mundo, localizado no Norte da África."
+  },
+  {
+    "id": 83,
+    "question": "Qual é a capital da Austrália?",
+    "choices": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Brisbane"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "Canberra foi construída para ser a capital como um compromisso entre Sydney e Melbourne."
+  },
+  {
+    "id": 84,
+    "question": "Quantos estados tem o Brasil?",
+    "choices": [
+      "25",
+      "26",
+      "27",
+      "28"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "O Brasil possui 26 estados mais o Distrito Federal."
+  },
+  {
+    "id": 85,
+    "question": "Qual o menor país do mundo em extensão territorial?",
+    "choices": [
+      "Mônaco",
+      "Nauru",
+      "San Marino",
+      "Vaticano"
+    ],
+    "answerIndex": 3,
+    "theme": "Geografia",
+    "explanation": "O Vaticano, localizado dentro de Roma, tem cerca de 0,44 km²."
+  },
+  {
+    "id": 86,
+    "question": "A Cordilheira dos Andes se estende por qual costa?",
+    "choices": [
+      "Leste da América do Norte",
+      "Oeste da América do Sul",
+      "Norte da Europa",
+      "Sul da Ásia"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "Os Andes cruzam vários países na costa oeste da América do Sul."
+  },
+  {
+    "id": 87,
+    "question": "Qual país tem o maior número de ilhas no mundo?",
+    "choices": [
+      "Filipinas",
+      "Indonésia",
+      "Suécia",
+      "Canadá"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "A Suécia tem mais de 260.000 ilhas, a maioria desabitada."
+  },
+  {
+    "id": 88,
+    "question": "Em que hemisfério está localizada a maior parte do território brasileiro?",
+    "choices": [
+      "Hemisfério Norte",
+      "Hemisfério Sul",
+      "Hemisfério Oriental",
+      "Acima da Linha do Equador"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "Aproximadamente 93% do Brasil fica no Hemisfério Sul."
+  },
+  {
+    "id": 89,
+    "question": "Qual oceano banha a costa oeste dos Estados Unidos?",
+    "choices": [
+      "Atlântico",
+      "Índico",
+      "Ártico",
+      "Pacífico"
+    ],
+    "answerIndex": 3,
+    "theme": "Geografia",
+    "explanation": "O Oceano Pacífico banha a costa leste da Ásia e a oeste das Américas."
+  },
+  {
+    "id": 90,
+    "question": "Onde fica o Monte Everest?",
+    "choices": [
+      "Alpes",
+      "Himalaia",
+      "Rochosas",
+      "Cárpatos"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "O monte mais alto da Terra localiza-se na cordilheira do Himalaia, entre Nepal e China."
+  },
+  {
+    "id": 91,
+    "question": "Qual país não faz fronteira com o Brasil?",
+    "choices": [
+      "Argentina",
+      "Equador",
+      "Colômbia",
+      "Venezuela"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "Apenas Equador e Chile não fazem fronteira com o Brasil na América do Sul."
+  },
+  {
+    "id": 92,
+    "question": "O clima predominante na Região Nordeste do Brasil (interior) é:",
+    "choices": [
+      "Equatorial",
+      "Tropical de Altitude",
+      "Semiárido",
+      "Subtropical"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "O sertão nordestino é caracterizado pelo clima semiárido, seco e quente."
+  },
+  {
+    "id": 93,
+    "question": "Qual país é dividido em duas partes pelo mar de Mármara?",
+    "choices": [
+      "Grécia",
+      "Egito",
+      "Rússia",
+      "Turquia"
+    ],
+    "answerIndex": 3,
+    "theme": "Geografia",
+    "explanation": "A Turquia tem território na Europa e na Ásia, separados pelo Bósforo e Mármara."
+  },
+  {
+    "id": 94,
+    "question": "A linha imaginária que divide a Terra em Ocidente e Oriente é:",
+    "choices": [
+      "Linha do Equador",
+      "Trópico de Câncer",
+      "Meridiano de Greenwich",
+      "Círculo Polar Ártico"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "O Meridiano de Greenwich é o meridiano inicial (0°)."
+  },
+  {
+    "id": 95,
+    "question": "Qual a capital do Canadá?",
+    "choices": [
+      "Toronto",
+      "Vancouver",
+      "Montreal",
+      "Ottawa"
+    ],
+    "answerIndex": 3,
+    "theme": "Geografia",
+    "explanation": "Embora Toronto seja a maior cidade, Ottawa é a capital nacional."
+  },
+  {
+    "id": 96,
+    "question": "Qual continente é coberto de gelo e não possui países soberanos?",
+    "choices": [
+      "Ártico",
+      "Antártida",
+      "Groenlândia",
+      "Alasca"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "A Antártida é um continente gelado protegido por tratados internacionais."
+  },
+  {
+    "id": 97,
+    "question": "A principal floresta que abriga o estado de Mato Grosso é:",
+    "choices": [
+      "Mata Atlântica",
+      "Pantanal e Amazônia",
+      "Caatinga",
+      "Pampas"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "O Mato Grosso abriga biomas do Cerrado, Pantanal e Floresta Amazônica."
+  },
+  {
+    "id": 98,
+    "question": "O canal do Panamá liga o Oceano Pacífico a qual outro oceano?",
+    "choices": [
+      "Índico",
+      "Atlântico",
+      "Ártico",
+      "Antártico"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "O canal foi construído para conectar o Pacífico e o Atlântico (Mar do Caribe)."
+  },
+  {
+    "id": 99,
+    "question": "A cidade do Rio de Janeiro deixou de ser a capital do Brasil em qual ano?",
+    "choices": [
+      "1950",
+      "1960",
+      "1970",
+      "1980"
+    ],
+    "answerIndex": 1,
+    "theme": "Geografia",
+    "explanation": "A capital foi transferida para Brasília em 1960."
+  },
+  {
+    "id": 100,
+    "question": "Qual é a maior ilha do mundo?",
+    "choices": [
+      "Madagascar",
+      "Nova Guiné",
+      "Groenlândia",
+      "Grã-Bretanha"
+    ],
+    "answerIndex": 2,
+    "theme": "Geografia",
+    "explanation": "A Groenlândia, território da Dinamarca, é a maior ilha não-continental do mundo."
+  },
+  {
+    "id": 101,
+    "question": "Quem descobriu o Brasil em 1500?",
+    "choices": [
+      "Cristóvão Colombo",
+      "Pedro Álvares Cabral",
+      "Vasco da Gama",
+      "Fernão de Magalhães"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "A esquadra de Pedro Álvares Cabral chegou ao Brasil em 22 de abril de 1500."
+  },
+  {
+    "id": 102,
+    "question": "Em que ano começou a Primeira Guerra Mundial?",
+    "choices": [
+      "1910",
+      "1914",
+      "1918",
+      "1939"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "A guerra estourou em 1914, após o assassinato do arquiduque Francisco Ferdinando."
+  },
+  {
+    "id": 103,
+    "question": "A Queda da Bastilha marcou o início de qual revolução?",
+    "choices": [
+      "Revolução Russa",
+      "Revolução Industrial",
+      "Revolução Francesa",
+      "Independência dos EUA"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "A Queda da Bastilha em 1789 é o símbolo do início da Revolução Francesa."
+  },
+  {
+    "id": 104,
+    "question": "Quem foi o primeiro presidente do Brasil?",
+    "choices": [
+      "Getúlio Vargas",
+      "Juscelino Kubitschek",
+      "Deodoro da Fonseca",
+      "Dom Pedro II"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "Marechal Deodoro da Fonseca assumiu após a Proclamação da República em 1889."
+  },
+  {
+    "id": 105,
+    "question": "Qual civilização construiu as pirâmides de Gizé?",
+    "choices": [
+      "Maias",
+      "Romanos",
+      "Egípcios",
+      "Gregos"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "As pirâmides foram erguidas no Antigo Egito como tumbas para os faraós."
+  },
+  {
+    "id": 106,
+    "question": "O Muro de Berlim caiu em que ano?",
+    "choices": [
+      "1985",
+      "1989",
+      "1991",
+      "1995"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "O muro, símbolo da Guerra Fria, foi derrubado em novembro de 1989."
+  },
+  {
+    "id": 107,
+    "question": "Qual rainha governou o Reino Unido por mais de 70 anos até 2022?",
+    "choices": [
+      "Rainha Vitória",
+      "Rainha Elizabeth II",
+      "Rainha Mary",
+      "Rainha Anne"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "Elizabeth II teve o reinado mais longo da história britânica."
+  },
+  {
+    "id": 108,
+    "question": "Quem proclamou a independência do Brasil às margens do rio Ipiranga?",
+    "choices": [
+      "Tiradentes",
+      "Dom Pedro I",
+      "José Bonifácio",
+      "Dom João VI"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "Dom Pedro I declarou a independência do Brasil de Portugal em 7 de setembro de 1822."
+  },
+  {
+    "id": 109,
+    "question": "Qual figura histórica liderou os nazistas na Alemanha?",
+    "choices": [
+      "Mussolini",
+      "Stalin",
+      "Adolf Hitler",
+      "Churchill"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "Adolf Hitler foi o ditador da Alemanha Nazista e principal instigador da 2ª Guerra Mundial."
+  },
+  {
+    "id": 110,
+    "question": "Zumbi dos Palmares foi um líder da resistência contra o que no Brasil?",
+    "choices": [
+      "A ditadura militar",
+      "O domínio holandês",
+      "A escravidão",
+      "A colonização espanhola"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "Zumbi foi o principal líder do Quilombo dos Palmares, resistindo à escravidão negra."
+  },
+  {
+    "id": 111,
+    "question": "Qual explorador deu a primeira volta ao mundo de navio (iniciou a viagem)?",
+    "choices": [
+      "Fernão de Magalhães",
+      "Cristóvão Colombo",
+      "Américo Vespúcio",
+      "James Cook"
+    ],
+    "answerIndex": 0,
+    "theme": "História",
+    "explanation": "Magalhães iniciou a circunavegação em 1519, que foi concluída por Juan Sebastián Elcano."
+  },
+  {
+    "id": 112,
+    "question": "O Império Romano do Ocidente caiu em qual século?",
+    "choices": [
+      "Século V",
+      "Século X",
+      "Século XV",
+      "Século I"
+    ],
+    "answerIndex": 0,
+    "theme": "História",
+    "explanation": "A queda tradicionalmente é datada em 476 d.C., no século V."
+  },
+  {
+    "id": 113,
+    "question": "Qual guerra foi marcada pelas trincheiras?",
+    "choices": [
+      "Guerra dos Cem Anos",
+      "Primeira Guerra Mundial",
+      "Segunda Guerra Mundial",
+      "Guerra do Vietnã"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "A Primeira Guerra ficou famosa pelo brutal combate de posições nas trincheiras."
+  },
+  {
+    "id": 114,
+    "question": "A Lei Áurea, que aboliu a escravidão no Brasil, foi assinada por quem?",
+    "choices": [
+      "Princesa Isabel",
+      "Dom Pedro II",
+      "Marechal Deodoro",
+      "José do Patrocínio"
+    ],
+    "answerIndex": 0,
+    "theme": "História",
+    "explanation": "A Princesa Isabel assinou a lei em 13 de maio de 1888, enquanto governava como regente."
+  },
+  {
+    "id": 115,
+    "question": "Qual cidade japonesa sofreu o primeiro ataque com bomba atômica?",
+    "choices": [
+      "Tóquio",
+      "Nagasaki",
+      "Quioto",
+      "Hiroshima"
+    ],
+    "answerIndex": 3,
+    "theme": "História",
+    "explanation": "Em 6 de agosto de 1945, a bomba 'Little Boy' foi lançada sobre Hiroshima."
+  },
+  {
+    "id": 116,
+    "question": "O período da Ditadura Militar no Brasil durou de:",
+    "choices": [
+      "1930 a 1945",
+      "1954 a 1964",
+      "1964 a 1985",
+      "1988 a 2002"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "Iniciou-se com o golpe de 1964 e terminou com a eleição de Tancredo Neves em 1985."
+  },
+  {
+    "id": 117,
+    "question": "Joana d'Arc foi uma heroína de qual país?",
+    "choices": [
+      "Inglaterra",
+      "França",
+      "Espanha",
+      "Itália"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "Ela liderou o exército francês em vitórias cruciais durante a Guerra dos Cem Anos."
+  },
+  {
+    "id": 118,
+    "question": "Os faraós Tutancâmon, Ramsés e Cleópatra são de qual período e região?",
+    "choices": [
+      "Antiga Grécia",
+      "Antiga Roma",
+      "Antigo Egito",
+      "Mesopotâmia"
+    ],
+    "answerIndex": 2,
+    "theme": "História",
+    "explanation": "Eles foram governantes emblemáticos da civilização egípcia."
+  },
+  {
+    "id": 119,
+    "question": "Qual foi o estopim para a Segunda Guerra Mundial?",
+    "choices": [
+      "Ataque a Pearl Harbor",
+      "Invasão da Polônia",
+      "Assassinato em Sarajevo",
+      "Revolução Bolchevique"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "A invasão da Polônia pela Alemanha em 1939 fez Reino Unido e França declararem guerra."
+  },
+  {
+    "id": 120,
+    "question": "A Magna Carta de 1215, que limitava os poderes do rei, foi assinada onde?",
+    "choices": [
+      "França",
+      "Inglaterra",
+      "Espanha",
+      "Portugal"
+    ],
+    "answerIndex": 1,
+    "theme": "História",
+    "explanation": "Assinada pelo Rei João Sem-Terra da Inglaterra, é um marco nos direitos constitucionais."
+  },
+  {
+    "id": 121,
+    "question": "Quem é o autor do clássico 'O Pequeno Príncipe'?",
+    "choices": [
+      "Victor Hugo",
+      "Jules Verne",
+      "Antoine de Saint-Exupéry",
+      "Albert Camus"
+    ],
+    "answerIndex": 2,
+    "theme": "Literatura",
+    "explanation": "O escritor e aviador francês Saint-Exupéry publicou o livro em 1943."
+  },
+  {
+    "id": 122,
+    "question": "Em 'Harry Potter', qual é a casa de Draco Malfoy?",
+    "choices": [
+      "Grifinória",
+      "Sonserina",
+      "Corvinal",
+      "Lufa-Lufa"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "A família Malfoy tradicionalmente pertence à casa da Sonserina."
+  },
+  {
+    "id": 123,
+    "question": "Qual autor brasileiro escreveu 'Vidas Secas'?",
+    "choices": [
+      "Graciliano Ramos",
+      "Jorge Amado",
+      "Guimarães Rosa",
+      "Euclides da Cunha"
+    ],
+    "answerIndex": 0,
+    "theme": "Literatura",
+    "explanation": "Graciliano Ramos retrata as agruras de uma família de retirantes no Nordeste."
+  },
+  {
+    "id": 124,
+    "question": "Quem escreveu a peça 'Romeu e Julieta'?",
+    "choices": [
+      "Christopher Marlowe",
+      "William Shakespeare",
+      "John Milton",
+      "Charles Dickens"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "A trágica história de amor foi escrita por Shakespeare no final do século XVI."
+  },
+  {
+    "id": 125,
+    "question": "A obra 'Os Lusíadas' é o poema épico de qual nação?",
+    "choices": [
+      "Espanha",
+      "Itália",
+      "Portugal",
+      "Brasil"
+    ],
+    "answerIndex": 2,
+    "theme": "Literatura",
+    "explanation": "Escrito por Luís Vaz de Camões, celebra as conquistas marítimas portuguesas."
+  },
+  {
+    "id": 126,
+    "question": "Capitu é uma personagem famosa de qual romance de Machado de Assis?",
+    "choices": [
+      "Memórias Póstumas de Brás Cubas",
+      "Dom Casmurro",
+      "Quincas Borba",
+      "O Alienista"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "O ciúme de Bentinho em relação a Capitu é a premissa de 'Dom Casmurro'."
+  },
+  {
+    "id": 127,
+    "question": "Que famoso detetive morava na Baker Street, 221B?",
+    "choices": [
+      "Hercule Poirot",
+      "Sherlock Holmes",
+      "Philip Marlowe",
+      "Inspetor Clouseau"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "Sherlock Holmes, criado por Arthur Conan Doyle, residia neste endereço londrino."
+  },
+  {
+    "id": 128,
+    "question": "Qual poema de Gonçalves Dias começa com 'Minha terra tem palmeiras, Onde canta o Sabiá'?",
+    "choices": [
+      "I-Juca-Pirama",
+      "Navio Negreiro",
+      "Canção do Exílio",
+      "Marília de Dirceu"
+    ],
+    "answerIndex": 2,
+    "theme": "Literatura",
+    "explanation": "Este é um dos poemas mais famosos do romantismo brasileiro."
+  },
+  {
+    "id": 129,
+    "question": "Em 'Senhor dos Anéis', quem deve destruir o Um Anel?",
+    "choices": [
+      "Aragorn",
+      "Gandalf",
+      "Frodo",
+      "Legolas"
+    ],
+    "answerIndex": 2,
+    "theme": "Literatura",
+    "explanation": "O hobbit Frodo Bolseiro herda a missão de levar o anel ao Monte da Perdição."
+  },
+  {
+    "id": 130,
+    "question": "Qual autor escreveu a saga épica 'As Crônicas de Gelo e Fogo' (Game of Thrones)?",
+    "choices": [
+      "J.R.R. Tolkien",
+      "George R.R. Martin",
+      "C.S. Lewis",
+      "Brandon Sanderson"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "George R.R. Martin publicou o primeiro livro da saga em 1996."
+  },
+  {
+    "id": 131,
+    "question": "Qual o gênero de 'A Divina Comédia' de Dante Alighieri?",
+    "choices": [
+      "Romance moderno",
+      "Poema épico",
+      "Conto infantil",
+      "Artigo científico"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "É um poema épico que descreve uma jornada pelo Inferno, Purgatório e Paraíso."
+  },
+  {
+    "id": 132,
+    "question": "A personagem Macabéa pertence a qual romance de Clarice Lispector?",
+    "choices": [
+      "A Hora da Estrela",
+      "A Paixão segundo G.H.",
+      "Perto do Coração Selvagem",
+      "Laços de Família"
+    ],
+    "answerIndex": 0,
+    "theme": "Literatura",
+    "explanation": "Macabéa é a protagonista datilógrafa e ingênua do último romance de Clarice em vida."
+  },
+  {
+    "id": 133,
+    "question": "Quem é o cavaleiro andante que luta contra moinhos de vento?",
+    "choices": [
+      "Rei Arthur",
+      "Dom Quixote",
+      "Lancelot",
+      "Cid Campeador"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "Dom Quixote de la Mancha, da obra de Miguel de Cervantes, confunde moinhos com gigantes."
+  },
+  {
+    "id": 134,
+    "question": "Iracema, a 'virgem dos lábios de mel', é obra de:",
+    "choices": [
+      "José de Alencar",
+      "Álvares de Azevedo",
+      "Castro Alves",
+      "Mário de Andrade"
+    ],
+    "answerIndex": 0,
+    "theme": "Literatura",
+    "explanation": "Romance indianista escrito por José de Alencar em 1865."
+  },
+  {
+    "id": 135,
+    "question": "'O Cortiço', principal obra do naturalismo no Brasil, foi escrito por:",
+    "choices": [
+      "Raul Pompéia",
+      "Aluísio Azevedo",
+      "Eça de Queirós",
+      "Machado de Assis"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "Aluísio Azevedo publicou o livro em 1890, retratando as classes baixas no RJ."
+  },
+  {
+    "id": 136,
+    "question": "Frankenstein é uma criação literária de qual escritora?",
+    "choices": [
+      "Jane Austen",
+      "Mary Shelley",
+      "Emily Brontë",
+      "Virginia Woolf"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "Mary Shelley publicou a obra-prima gótica 'Frankenstein' anonimamente em 1818."
+  },
+  {
+    "id": 137,
+    "question": "Em 'A Metamorfose', Gregor Samsa acorda transformado em:",
+    "choices": [
+      "Um cão",
+      "Um pássaro",
+      "Um inseto monstruoso",
+      "Um fantasma"
+    ],
+    "answerIndex": 2,
+    "theme": "Literatura",
+    "explanation": "Na obra de Franz Kafka, Gregor vira um bicho não especificado, frequentemente lido como barata."
+  },
+  {
+    "id": 138,
+    "question": "A saga 'Crepúsculo' tem como tema central o romance entre uma humana e um:",
+    "choices": [
+      "Lobisomem",
+      "Vampiro",
+      "Anjo",
+      "Fantasma"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "O romance gira em torno do vampiro Edward Cullen e Bella Swan."
+  },
+  {
+    "id": 139,
+    "question": "'1984', famosa distopia com o 'Grande Irmão', é de autoria de:",
+    "choices": [
+      "Aldous Huxley",
+      "George Orwell",
+      "Ray Bradbury",
+      "H.G. Wells"
+    ],
+    "answerIndex": 1,
+    "theme": "Literatura",
+    "explanation": "George Orwell publicou a obra em 1949, alertando sobre regimes totalitários."
+  },
+  {
+    "id": 140,
+    "question": "O protagonista de 'O Auto da Compadecida' chama-se:",
+    "choices": [
+      "Chicó e João Grilo",
+      "Riobaldo",
+      "Fabiano",
+      "Augusto Matraga"
+    ],
+    "answerIndex": 0,
+    "theme": "Literatura",
+    "explanation": "A peça de Ariano Suassuna acompanha as aventuras de João Grilo e Chicó."
+  },
+  {
+    "id": 141,
+    "question": "Qual é a raiz quadrada de 144?",
+    "choices": [
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "12 × 12 = 144."
+  },
+  {
+    "id": 142,
+    "question": "Quanto é 15% de 200?",
+    "choices": [
+      "15",
+      "30",
+      "45",
+      "60"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "10% de 200 é 20. 5% é 10. 20 + 10 = 30."
+  },
+  {
+    "id": 143,
+    "question": "Qual é o valor de Pi (π) aproximado a duas casas decimais?",
+    "choices": [
+      "3,12",
+      "3,14",
+      "3,16",
+      "3,18"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "Pi (π) é aproximadamente 3,14159..."
+  },
+  {
+    "id": 144,
+    "question": "Qual a soma dos ângulos internos de um triângulo?",
+    "choices": [
+      "90°",
+      "180°",
+      "360°",
+      "270°"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "A soma dos ângulos internos de qualquer triângulo plano é sempre 180°."
+  },
+  {
+    "id": 145,
+    "question": "Quantos lados tem um hexágono?",
+    "choices": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "O prefixo 'hexa' significa seis, portanto, 6 lados."
+  },
+  {
+    "id": 146,
+    "question": "Resolva a equação: 2x + 5 = 15.",
+    "choices": [
+      "x = 10",
+      "x = 5",
+      "x = 2",
+      "x = 20"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "2x = 15 - 5 => 2x = 10 => x = 5."
+  },
+  {
+    "id": 147,
+    "question": "O que é um número primo?",
+    "choices": [
+      "Divisível por 2",
+      "Divisível por vários",
+      "Divisível apenas por 1 e por ele mesmo",
+      "Número negativo"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "Exemplos: 2, 3, 5, 7, 11."
+  },
+  {
+    "id": 148,
+    "question": "Qual é a fórmula da área do retângulo?",
+    "choices": [
+      "Base × Altura",
+      "Base + Altura",
+      "(Base × Altura)/2",
+      "Lado²"
     ],
     "answerIndex": 0,
     "theme": "Matemática",
-    "explanation": "Um minuto tem 60 segundos por definição do sistema de tempo."
+    "explanation": "Multiplicamos a medida da base pela altura."
+  },
+  {
+    "id": 149,
+    "question": "Qual é o único número primo que é par?",
+    "choices": [
+      "0",
+      "2",
+      "4",
+      "6"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "O 2 é o único par divisível apenas por 1 e por ele próprio."
+  },
+  {
+    "id": 150,
+    "question": "Se um produto custa R$ 50,00 e tem 20% de desconto, qual o preço final?",
+    "choices": [
+      "R$ 30,00",
+      "R$ 40,00",
+      "R$ 45,00",
+      "R$ 60,00"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "20% de 50 é 10. 50 - 10 = 40."
+  },
+  {
+    "id": 151,
+    "question": "Quanto é 5 fatorial (5!)?",
+    "choices": [
+      "15",
+      "60",
+      "120",
+      "240"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "5 × 4 × 3 × 2 × 1 = 120."
+  },
+  {
+    "id": 152,
+    "question": "Em um triângulo retângulo, o lado oposto ao ângulo reto é a:",
+    "choices": [
+      "Cateto oposto",
+      "Cateto adjacente",
+      "Hipotenusa",
+      "Bissetriz"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "A hipotenusa é o maior lado do triângulo retângulo."
+  },
+  {
+    "id": 153,
+    "question": "Quanto é 10 elevado a potência 3 (10³)?",
+    "choices": [
+      "30",
+      "100",
+      "1000",
+      "10000"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "10 × 10 × 10 = 1000."
+  },
+  {
+    "id": 154,
+    "question": "Qual o valor de x em 3/4 = x/12?",
+    "choices": [
+      "6",
+      "8",
+      "9",
+      "10"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "Multiplicando em cruz: 4x = 36 => x = 9."
+  },
+  {
+    "id": 155,
+    "question": "Um decágono tem quantos lados?",
+    "choices": [
+      "8",
+      "10",
+      "12",
+      "20"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "O prefixo 'deca' refere-se a dez."
+  },
+  {
+    "id": 156,
+    "question": "A mediana de 1, 3, 3, 6, 7, 8, 9 é:",
+    "choices": [
+      "3",
+      "6",
+      "7",
+      "5.2"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "A mediana é o número do meio numa série ordenada, que é 6."
+  },
+  {
+    "id": 157,
+    "question": "O volume de um cubo com lado 3 cm é:",
+    "choices": [
+      "9 cm³",
+      "12 cm³",
+      "18 cm³",
+      "27 cm³"
+    ],
+    "answerIndex": 3,
+    "theme": "Matemática",
+    "explanation": "Volume = lado³. 3 × 3 × 3 = 27."
+  },
+  {
+    "id": 158,
+    "question": "Numa dízima periódica 0,333..., qual é a fração geratriz?",
+    "choices": [
+      "1/3",
+      "1/4",
+      "3/10",
+      "1/2"
+    ],
+    "answerIndex": 0,
+    "theme": "Matemática",
+    "explanation": "1 dividido por 3 resulta em 0,333..."
+  },
+  {
+    "id": 159,
+    "question": "Qual o dobro da metade de 80?",
+    "choices": [
+      "20",
+      "40",
+      "80",
+      "160"
+    ],
+    "answerIndex": 2,
+    "theme": "Matemática",
+    "explanation": "A metade de 80 é 40. O dobro de 40 é 80."
+  },
+  {
+    "id": 160,
+    "question": "A distância do centro até a borda de um círculo é o:",
+    "choices": [
+      "Diâmetro",
+      "Raio",
+      "Arco",
+      "Corda"
+    ],
+    "answerIndex": 1,
+    "theme": "Matemática",
+    "explanation": "O raio é a metade do diâmetro, ligando o centro à extremidade."
+  },
+  {
+    "id": 161,
+    "question": "Qual cor do espectro visível possui o maior comprimento de onda?",
+    "choices": [
+      "Azul",
+      "Violeta",
+      "Vermelho",
+      "Verde"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "O vermelho tem o maior comprimento e a menor frequência do espectro visível."
+  },
+  {
+    "id": 162,
+    "question": "Qual Framework web foi reescrito pela Google a partir do AngularJS?",
+    "choices": [
+      "React",
+      "Vue",
+      "Svelte",
+      "Angular"
+    ],
+    "answerIndex": 3,
+    "theme": "Misturado",
+    "explanation": "A versão moderna (Angular 2+) foi escrita em TypeScript e abandonou o sufixo 'JS'."
+  },
+  {
+    "id": 163,
+    "question": "Quem pintou a 'Mona Lisa'?",
+    "choices": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Michelangelo"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "A icônica obra foi pintada por Da Vinci no início do século XVI."
+  },
+  {
+    "id": 164,
+    "question": "Qual é a deusa grega da sabedoria e estratégia em batalha?",
+    "choices": [
+      "Hera",
+      "Afrodite",
+      "Atena",
+      "Ártemis"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "Atena é a deusa da sabedoria, artes e estratégia militar."
+  },
+  {
+    "id": 165,
+    "question": "Qual destas linguagens de programação é orientada a objetos e utiliza a Máquina Virtual (JVM)?",
+    "choices": [
+      "C",
+      "Assembly",
+      "Java",
+      "HTML"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "Java compila para bytecode rodado pela Java Virtual Machine (JVM)."
+  },
+  {
+    "id": 166,
+    "question": "Qual animal tem a mordida mais forte do mundo em proporção?",
+    "choices": [
+      "Leão",
+      "Tubarão Branco",
+      "Crocodilo de água salgada",
+      "Urso pardo"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "Os crocodilos possuem uma força de mordida de milhares de PSI."
+  },
+  {
+    "id": 167,
+    "question": "Como se chama o triângulo que possui todos os lados desiguais?",
+    "choices": [
+      "Isósceles",
+      "Equilátero",
+      "Escaleno",
+      "Retângulo"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "O triângulo escaleno não tem nenhum lado igual a outro."
+  },
+  {
+    "id": 168,
+    "question": "Na mitologia nórdica, quem é o deus do Trovão?",
+    "choices": [
+      "Odin",
+      "Loki",
+      "Freyr",
+      "Thor"
+    ],
+    "answerIndex": 3,
+    "theme": "Misturado",
+    "explanation": "Thor, filho de Odin, empunha o martelo Mjölnir."
+  },
+  {
+    "id": 169,
+    "question": "Qual anime clássico dos anos 90 narra as aventuras de Gon Freecss?",
+    "choices": [
+      "Dragon Ball Z",
+      "Naruto",
+      "Hunter x Hunter",
+      "Sailor Moon"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "A versão clássica do anime (1999) acompanha Gon na jornada para se tornar um Hunter."
+  },
+  {
+    "id": 170,
+    "question": "Qual é a capital da Itália?",
+    "choices": [
+      "Milão",
+      "Veneza",
+      "Roma",
+      "Nápoles"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "A eterna cidade de Roma é a capital italiana."
+  },
+  {
+    "id": 171,
+    "question": "O que significa a sigla 'URL' na informática?",
+    "choices": [
+      "Uniform Resource Locator",
+      "Universal Routing Link",
+      "User Request Language",
+      "Unidade de Rede Local"
+    ],
+    "answerIndex": 0,
+    "theme": "Misturado",
+    "explanation": "URL indica o endereço de um recurso na web."
+  },
+  {
+    "id": 172,
+    "question": "Em qual esporte se usa o termo 'Touchdown'?",
+    "choices": [
+      "Rugby",
+      "Futebol Americano",
+      "Basquete",
+      "Beisebol"
+    ],
+    "answerIndex": 1,
+    "theme": "Misturado",
+    "explanation": "É a principal pontuação do futebol americano."
+  },
+  {
+    "id": 173,
+    "question": "Qual ambiente gráfico (Desktop Environment) é padrão no sistema Ubuntu?",
+    "choices": [
+      "KDE Plasma",
+      "XFCE",
+      "GNOME",
+      "Cinnamon"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "O GNOME é a interface padrão que acompanha o Ubuntu."
+  },
+  {
+    "id": 174,
+    "question": "Qual metal é líquido em temperatura ambiente?",
+    "choices": [
+      "Prata",
+      "Mercúrio",
+      "Cobre",
+      "Alumínio"
+    ],
+    "answerIndex": 1,
+    "theme": "Misturado",
+    "explanation": "O mercúrio, usado em termômetros antigos, é o único metal líquido a cerca de 20°C."
+  },
+  {
+    "id": 175,
+    "question": "Quem canta o hit 'Billie Jean'?",
+    "choices": [
+      "Prince",
+      "Stevie Wonder",
+      "Michael Jackson",
+      "Freddie Mercury"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "Lançada no álbum Thriller (1982), de Michael Jackson."
+  },
+  {
+    "id": 176,
+    "question": "Que constelação tem o formato de uma cruz e é famosa no Hemisfério Sul?",
+    "choices": [
+      "Órion",
+      "Cruzeiro do Sul",
+      "Ursa Maior",
+      "Escorpião"
+    ],
+    "answerIndex": 1,
+    "theme": "Misturado",
+    "explanation": "O Cruzeiro do Sul figura na bandeira do Brasil e outras nações austrais."
+  },
+  {
+    "id": 177,
+    "question": "Qual é a função do CSS no desenvolvimento Web?",
+    "choices": [
+      "Gerenciar o Banco de Dados",
+      "Estruturar o texto",
+      "Estilizar a aparência visual",
+      "Lógica de servidor"
+    ],
+    "answerIndex": 2,
+    "theme": "Misturado",
+    "explanation": "Cascading Style Sheets controlam cores, alinhamentos e design de páginas web."
+  },
+  {
+    "id": 178,
+    "question": "De qual país o sushi é originário?",
+    "choices": [
+      "China",
+      "Japão",
+      "Coreia do Sul",
+      "Tailândia"
+    ],
+    "answerIndex": 1,
+    "theme": "Misturado",
+    "explanation": "O prato tradicional de arroz avinagrado e peixe é japonês."
+  },
+  {
+    "id": 179,
+    "question": "Na Tabela Periódica, Na é o símbolo para:",
+    "choices": [
+      "Níquel",
+      "Sódio",
+      "Nitrogênio",
+      "Neônio"
+    ],
+    "answerIndex": 1,
+    "theme": "Misturado",
+    "explanation": "Vem do latim 'Natrium' (Sódio)."
+  },
+  {
+    "id": 180,
+    "question": "Qual destas bibliotecas/ferramentas facilita componentes UI no Angular?",
+    "choices": [
+      "PrimeNG",
+      "Hibernate",
+      "Spring Boot",
+      "Laravel"
+    ],
+    "answerIndex": 0,
+    "theme": "Misturado",
+    "explanation": "PrimeNG oferece uma suíte de componentes ricos para a interface do Angular."
+  },
+  {
+    "id": 181,
+    "question": "Quem é o autor do clássico 'Chega de Saudade', marco inicial da Bossa Nova?",
+    "choices": [
+      "João Gilberto e Tom Jobim",
+      "Caetano Veloso",
+      "Chico Buarque",
+      "Tim Maia"
+    ],
+    "answerIndex": 0,
+    "theme": "MPB",
+    "explanation": "A música, composta por Tom Jobim e Vinicius de Moraes, ganhou o mundo com o violão e voz de João Gilberto."
+  },
+  {
+    "id": 182,
+    "question": "Qual cantora é conhecida como a 'Pimentinha' da MPB?",
+    "choices": [
+      "Gal Costa",
+      "Maria Bethânia",
+      "Elis Regina",
+      "Rita Lee"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Elis Regina foi apelidada de Pimentinha por seu temperamento forte e energia no palco."
+  },
+  {
+    "id": 183,
+    "question": "Chico Buarque escreveu a música 'Cálice' durante qual período da história brasileira?",
+    "choices": [
+      "Era Vargas",
+      "Redemocratização",
+      "Ditadura Militar",
+      "República Velha"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "'Cálice' é uma crítica à censura durante o regime militar, num jogo de palavras com 'cale-se'."
+  },
+  {
+    "id": 184,
+    "question": "Qual movimento musical encabeçado por Caetano Veloso e Gilberto Gil sacudiu a MPB em 1967?",
+    "choices": [
+      "Jovem Guarda",
+      "Tropicália",
+      "Bossa Nova",
+      "Clube da Esquina"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "O Tropicalismo misturou ritmos brasileiros, guitarras elétricas e psicodelia."
+  },
+  {
+    "id": 185,
+    "question": "Qual famoso estado brasileiro abriga o movimento 'Clube da Esquina'?",
+    "choices": [
+      "Rio de Janeiro",
+      "Bahia",
+      "Pernambuco",
+      "Minas Gerais"
+    ],
+    "answerIndex": 3,
+    "theme": "MPB",
+    "explanation": "Milton Nascimento, Lô Borges e outros artistas criaram este som icônico em Minas Gerais."
+  },
+  {
+    "id": 186,
+    "question": "A música 'O Ouro de Tolo' é um clássico de qual artista excêntrico da MPB?",
+    "choices": [
+      "Belchior",
+      "Raul Seixas",
+      "Tim Maia",
+      "Zé Ramalho"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Raul Seixas lançou a canção questionando os ideais materialistas da sociedade."
+  },
+  {
+    "id": 187,
+    "question": "Quem é o Síndico, famoso pelas canções de soul e funk brasileiro como 'Descobridor dos Sete Mares'?",
+    "choices": [
+      "Jorge Ben Jor",
+      "Seu Jorge",
+      "Tim Maia",
+      "Ed Motta"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Tim Maia foi apelidado de 'Síndico do Brasil' por Jorge Ben Jor."
+  },
+  {
+    "id": 188,
+    "question": "Rita Lee integrou qual famosa banda de rock psicodélico brasileiro nos anos 60 e 70?",
+    "choices": [
+      "Secos & Molhados",
+      "Os Mutantes",
+      "Barão Vermelho",
+      "Titãs"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Ao lado de Arnaldo Baptista e Sérgio Dias, Rita Lee foi fundadora d'Os Mutantes."
+  },
+  {
+    "id": 189,
+    "question": "A icônica música 'Águas de Março' cantada em dueto por Elis Regina teve composição de:",
+    "choices": [
+      "Cartola",
+      "Pixinguinha",
+      "Tom Jobim",
+      "Adoniran Barbosa"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Tom Jobim compôs a obra e o dueto no disco 'Elis & Tom' é mundialmente aclamado."
+  },
+  {
+    "id": 190,
+    "question": "A canção 'As Rosas Não Falam' é obra de qual mestre do samba?",
+    "choices": [
+      "Noel Rosa",
+      "Cartola",
+      "Candeia",
+      "Paulinho da Viola"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Cartola, um dos maiores nomes da Mangueira e do samba, compôs este clássico."
+  },
+  {
+    "id": 191,
+    "question": "Maria Bethânia é irmã de qual outro grande nome da MPB?",
+    "choices": [
+      "Chico Buarque",
+      "Caetano Veloso",
+      "Gilberto Gil",
+      "Milton Nascimento"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Ambos nasceram em Santo Amaro, na Bahia."
+  },
+  {
+    "id": 192,
+    "question": "O álbum de estreia homônimo dos 'Secos & Molhados' (1973) revelou qual famoso vocalista?",
+    "choices": [
+      "Ney Matogrosso",
+      "Cazuza",
+      "Renato Russo",
+      "Lulu Santos"
+    ],
+    "answerIndex": 0,
+    "theme": "MPB",
+    "explanation": "Com sua voz inconfundível e maquiagem cênica, Ney marcou a cena musical."
+  },
+  {
+    "id": 193,
+    "question": "O 'Rei do Baião', que popularizou o forró no Brasil, é:",
+    "choices": [
+      "Jackson do Pandeiro",
+      "Alceu Valença",
+      "Luiz Gonzaga",
+      "Dominguinhos"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Luiz Gonzaga criou o baião e eternizou clássicos como 'Asa Branca'."
+  },
+  {
+    "id": 194,
+    "question": "'Como Nossos Pais' é uma canção composta por Belchior, mas eternizada na voz de:",
+    "choices": [
+      "Cássia Eller",
+      "Marisa Monte",
+      "Elis Regina",
+      "Gal Costa"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "A versão enérgica de Elis no álbum 'Falso Brilhante' é a gravação definitiva da canção."
+  },
+  {
+    "id": 195,
+    "question": "Qual cantora carioca, dona do álbum 'Verde, Anil, Amarelo, Cor-de-Rosa e Carvão', marcou a MPB nos anos 90?",
+    "choices": [
+      "Cássia Eller",
+      "Zélia Duncan",
+      "Marisa Monte",
+      "Adriana Calcanhotto"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Marisa Monte combinou MPB, pop e samba com este aclamado disco de 1994."
+  },
+  {
+    "id": 196,
+    "question": "'O Bêbado e a Equilibrista' virou o hino da anistia no Brasil. Quem cantou a versão clássica?",
+    "choices": [
+      "Elis Regina",
+      "Nara Leão",
+      "Clara Nunes",
+      "Beth Carvalho"
+    ],
+    "answerIndex": 0,
+    "theme": "MPB",
+    "explanation": "Composta por João Bosco e Aldir Blanc, a música imortalizou-se na voz de Elis."
+  },
+  {
+    "id": 197,
+    "question": "Djavan é originário de qual estado brasileiro, que influencia diretamente suas melodias?",
+    "choices": [
+      "Pernambuco",
+      "Alagoas",
+      "Sergipe",
+      "Bahia"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Ele nasceu em Maceió, Alagoas, trazendo muito da sua terra nas composições."
+  },
+  {
+    "id": 198,
+    "question": "A canção 'Aquarela do Brasil', famosa por exaltar o país no exterior, é de autoria de:",
+    "choices": [
+      "Pixinguinha",
+      "Dorival Caymmi",
+      "Ary Barroso",
+      "Carmen Miranda"
+    ],
+    "answerIndex": 2,
+    "theme": "MPB",
+    "explanation": "Escrita por Ary Barroso em 1939, é uma das músicas brasileiras mais regravadas no mundo."
+  },
+  {
+    "id": 199,
+    "question": "O grupo 'Tribalistas' é formado por Marisa Monte, Arnaldo Antunes e:",
+    "choices": [
+      "Nando Reis",
+      "Carlinhos Brown",
+      "Lulu Santos",
+      "Lenine"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Carlinhos Brown integra o famoso trio que lançou álbuns de sucesso em 2002 e 2017."
+  },
+  {
+    "id": 200,
+    "question": "Quem é o autor do verso 'Que o perdão seja sagrado / Que a fé seja infinita', e famoso pelos clássicos românticos e pop na MPB?",
+    "choices": [
+      "Fábio Jr.",
+      "Roberto Carlos",
+      "Ivan Lins",
+      "Guilherme Arantes"
+    ],
+    "answerIndex": 1,
+    "theme": "MPB",
+    "explanation": "Versos marcantes do repertório do 'Rei', eternizados em suas parcerias com Erasmo Carlos."
   }
 ]
