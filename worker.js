@@ -53,6 +53,8 @@ export default {
       'Vary': 'Origin',
     };
     if (originToAllow !== '*') corsHeaders['Access-Control-Allow-Credentials'] = 'true';
+    // Evita que respostas do endpoint API sejam cacheadas por CDNs/proxies.
+    corsHeaders['Cache-Control'] = 'no-store';
 
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders });
@@ -60,7 +62,7 @@ export default {
 
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/generate-questions')) {
-      return new Response('Not found', { status: 404 });
+      return new Response('Not found', { status: 404, headers: corsHeaders });
     }
 
     if (request.method !== 'POST') {
