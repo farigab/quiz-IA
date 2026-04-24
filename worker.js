@@ -1,38 +1,10 @@
-// Cloudflare Worker: proxy /api/generate-questions to the Generative API
-// Expects `GOOGLE_API_KEY` as a secret (set with `wrangler secret put`) and
-// `GENERATIVE_API_URL` / `FRONTEND_ORIGIN` in `wrangler.toml` [vars].
-
-const extractTextFromResponse = (data) => {
-  if (!data) return '';
-  if (typeof data === 'string') return data;
-  if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-    return data.candidates[0].content.parts[0].text;
-  }
-  return JSON.stringify(data);
-};
-
-const extractJSONFromText = (text) => {
-  if (!text) return null;
-  const cleanedText = text.replaceAll('```json', '').replaceAll('```', '').trim();
-  const start = cleanedText.indexOf('[');
-  const end = cleanedText.lastIndexOf(']');
-  if (start !== -1 && end !== -1 && end > start) {
-    const candidate = cleanedText.slice(start, end + 1);
-    try { return JSON.parse(candidate); } catch (e) { /* fall through */ }
-  }
-  return null;
-};
-
-// [FIX #3] Sanitização de input idêntica ao server.js para evitar prompt injection.
-// Remove qualquer caractere que não seja letra Unicode, número, espaço ou hífen.
-const sanitizeTheme = (raw) => {
-  if (!raw || typeof raw !== 'string') return null;
-  const cleaned = raw.replaceAll(/[^\p{L}\p{N} \-]/gu, '').trim().slice(0, 60);
-  return cleaned || null;
-};
-
-// [FIX #3] Clamp de count igual ao server.js: mínimo 1, máximo 20.
-const sanitizeCount = (raw) => Math.min(Math.max(1, Number(raw) || 10), 20);
+import {
+  extractTextFromResponse,
+  extractJSONFromText,
+  sanitizeTheme,
+  sanitizeCount,
+  normalizeQuestions,
+} from './lib/gemini-utils.mjs';
 
 export default {
   async fetch(request, env) {
@@ -102,10 +74,14 @@ export default {
       ).replaceAll('"', '');
 
       const headers = { 'Content-Type': 'application/json' };
-      if (env.GOOGLE_API_KEY) {
-        // [FIX #2] Header exclusivo — sem ?key= na URL.
-        headers['x-goog-api-key'] = env.GOOGLE_API_KEY;
+      if (!env.GOOGLE_API_KEY) {
+        return new Response(
+          JSON.stringify({ ok: false, error: 'Server misconfigured: missing API key.' }),
+          { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+        );
       }
+      // [FIX #2] Header exclusivo — sem ?key= na URL.
+      headers['x-goog-api-key'] = env.GOOGLE_API_KEY;
 
       const geminiBody = {
         contents: [{ parts: [{ text: prompt }] }],
@@ -137,14 +113,7 @@ export default {
         );
       }
 
-      const normalized = parsed.map((it, idx) => ({
-        id: it.id ?? (idx + 1),
-        theme: it.theme ?? theme,
-        question: it.question ?? '',
-        choices: Array.isArray(it.choices) ? it.choices : [],
-        answerIndex: Number(it.answerIndex ?? 0),
-        explanation: it.explanation ?? null,
-      }));
+      const normalized = normalizeQuestions(parsed, theme);
 
       return new Response(
         JSON.stringify({ ok: true, questions: normalized }),

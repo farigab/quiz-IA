@@ -5,6 +5,7 @@ const { GoogleAuth } = require('google-auth-library');
 require('dotenv').config();
 const path = require('node:path');
 const fs = require('node:fs');
+const geminiUtils = require('./lib/gemini-utils.cjs');
 
 const app = express();
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -36,9 +37,10 @@ app.use('/api/', apiLimiter);
 const devConnect = IS_PROD ? '' : ' http://localhost:3000';
 const connectSrc = `connect-src 'self'${devConnect} https://generativelanguage.googleapis.com https://fonts.googleapis.com https://fonts.gstatic.com`;
 const fontSrc = "font-src 'self' https://fonts.gstatic.com";
-const styleSrc = IS_PROD
-  ? "style-src 'self' https://fonts.googleapis.com"
-  : "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com";
+// Keep a consistent, stricter style-src in dev and prod to avoid masking
+// inline-style regressions. Use a nonce in the future if inline styles are
+// required during development.
+const styleSrc = "style-src 'self' https://fonts.googleapis.com";
 const CSP = [
   "default-src 'self'",
   connectSrc,
@@ -52,6 +54,15 @@ const CSP = [
 
 app.use((_req, res, next) => {
   res.setHeader('Content-Security-Policy', CSP);
+  next();
+});
+
+// Additional security headers
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=()');
   next();
 });
 
@@ -175,20 +186,7 @@ async function callGenerativeAPI(prompt) {
 }
 
 // ── Utilitários de parse ──────────────────────────────────────────────────────
-function extractTextFromResponse(data) {
-  if (!data) return '';
-  if (typeof data === 'string') return data;
-  return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? JSON.stringify(data);
-}
-
-function extractJSONFromText(text) {
-  if (!text) return null;
-  const clean = text.replaceAll('```json', '').replaceAll('```', '').trim();
-  const start = clean.indexOf('[');
-  const end = clean.lastIndexOf(']');
-  if (start === -1 || end <= start) return null;
-  try { return JSON.parse(clean.slice(start, end + 1)); } catch { return null; }
-}
+// Moved to ./lib/gemini-utils.cjs and required at the top of this file.
 
 // ── Rota de geração ───────────────────────────────────────────────────────────
 // [FIX #17] express.json() aplicado por rota, não globalmente.
@@ -197,16 +195,10 @@ app.post('/api/generate-questions', express.json({ limit: '16kb' }), async (req,
   const rawTheme = req.body?.theme;
   const rawCount = req.body?.count;
 
-  if (!rawTheme || typeof rawTheme !== 'string') {
-    return res.status(400).json({ ok: false, error: 'theme é obrigatório e deve ser string.' });
-  }
+  const theme = geminiUtils.sanitizeTheme(rawTheme);
+  if (!theme) return res.status(400).json({ ok: false, error: 'theme é obrigatório e deve ser string.' });
 
-  const theme = rawTheme.replaceAll(/[^\p{L}\p{N} \-]/gu, '').trim().slice(0, 60);
-  if (!theme) {
-    return res.status(400).json({ ok: false, error: 'theme inválido após sanitização.' });
-  }
-
-  const count = Math.min(Math.max(1, Number(rawCount) || 10), 20);
+  const count = geminiUtils.sanitizeCount(rawCount);
 
   const prompt =
     `Gere ${count} perguntas de múltipla escolha em português sobre o tema "${theme}". ` +
@@ -219,8 +211,8 @@ app.post('/api/generate-questions', express.json({ limit: '16kb' }), async (req,
 
   try {
     const apiResp = await callGenerativeAPI(prompt);
-    const text = extractTextFromResponse(apiResp);
-    const parsed = extractJSONFromText(text);
+    const text = geminiUtils.extractTextFromResponse(apiResp);
+    const parsed = geminiUtils.extractJSONFromText(text);
 
     if (!parsed) {
       console.error('Falha ao extrair JSON da resposta:', text?.slice(0, 500));
@@ -230,14 +222,16 @@ app.post('/api/generate-questions', express.json({ limit: '16kb' }), async (req,
       });
     }
 
-    const normalized = parsed.map((it, idx) => ({
-      id: it.id ?? (idx + 1),
-      theme: it.theme ?? theme,
-      question: it.question ?? '',
-      choices: Array.isArray(it.choices) ? it.choices : [],
-      answerIndex: Number(it.answerIndex ?? 0),
-      explanation: it.explanation ?? null,
-    }));
+    const normalized = parsed.map((it, idx) => {
+      const id = it.id ?? (idx + 1);
+      const th = it.theme ?? theme;
+      const question = it.question ?? '';
+      const choices = Array.isArray(it.choices) ? it.choices : [];
+      const idxNum = Number(it.answerIndex ?? 0);
+      const answerIndex = (idxNum >= 0 && idxNum < choices.length) ? idxNum : 0;
+      const explanation = it.explanation ?? null;
+      return { id, theme: th, question, choices, answerIndex, explanation };
+    });
 
     return res.json({ ok: true, questions: normalized });
 

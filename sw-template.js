@@ -1,7 +1,7 @@
 // Workbox injects the versioned precache manifest here at build time.
 const WB_PRECACHE = self.__WB_MANIFEST || [];
 
-const IS_VERSIONED = /service-worker\.\d+\.js/.test(self.location.href);
+const IS_VERSIONED = (typeof __IS_VERSIONED__ !== 'undefined') ? __IS_VERSIONED__ : /service-worker\.\d+\.js/.test(self.location.href);
 const BUILD_ID = '__BUILD_ID__';
 const CACHE_NAME = `showdo-miau-${BUILD_ID}`;
 
@@ -10,7 +10,6 @@ const ASSETS = [
   '/index.html',
   '/styles.css',
   '/app.js',
-  '/questions.json',
   '/manifest.json',
   '/icons/icon-192.svg',
   '/icons/icon-512.svg'

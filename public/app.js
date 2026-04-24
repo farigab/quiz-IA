@@ -1,13 +1,13 @@
 const QUESTIONS_URL = './questions.json';
-const NUM_QUESTIONS = 10;
+const NUM_QUESTIONS = globalThis.SHOWDO_CONSTANTS?.NUM_QUESTIONS ?? 10;
 // Runtime-configurable server base. Create a `config.js` that sets:
 // window.SHOWDO_CONFIG = { serverBase: 'https://seu-backend.example.com' }
 const DEFAULT_LOCAL_SERVER = 'http://localhost:3000';
 const SERVER_BASE = (globalThis.SHOWDO_CONFIG?.serverBase)
   || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? DEFAULT_LOCAL_SERVER : '');
 
-const AUTO_ADVANCE_DELAY = 15000;
-const AUTO_ADVANCE_ENABLED = true;
+const AUTO_ADVANCE_DELAY = globalThis.SHOWDO_CONSTANTS?.AUTO_ADVANCE_DELAY ?? 15000;
+const AUTO_ADVANCE_ENABLED = globalThis.SHOWDO_CONSTANTS?.AUTO_ADVANCE_ENABLED ?? true;
 
 const safeStorage = {
   get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
@@ -39,6 +39,21 @@ let score = 0;
 let answered = false;
 let autoAdvanceTimer = null;
 let currentTheme = null;
+let activeController = null;
+// Accessible status node for screen readers (hidden visually)
+let srStatusEl = document.getElementById('sr-status');
+if (!srStatusEl) {
+  srStatusEl = document.createElement('div');
+  srStatusEl.id = 'sr-status';
+  srStatusEl.setAttribute('aria-live', 'polite');
+  srStatusEl.setAttribute('role', 'status');
+  srStatusEl.style.position = 'absolute';
+  srStatusEl.style.left = '-9999px';
+  srStatusEl.style.width = '1px';
+  srStatusEl.style.height = '1px';
+  srStatusEl.style.overflow = 'hidden';
+  try { document.body.appendChild(srStatusEl); } catch (e) { /* ignore */ }
+}
 
 nextBtn.addEventListener('click', onNext);
 restartBtn.addEventListener('click', resetToIntro);
@@ -58,8 +73,21 @@ if (diceBtn) {
   diceBtn.addEventListener('click', () => {
     if (diceBtn.classList.contains('rolling')) return;
     diceBtn.classList.add('rolling');
+    // Accessibility: mark as busy and announce to AT users
+    diceBtn.setAttribute('aria-disabled', 'true');
+    const prevLabel = diceBtn.getAttribute('aria-label') || '';
+    diceBtn.setAttribute('data-prev-aria-label', prevLabel);
+    diceBtn.setAttribute('aria-label', 'Gerando tema aleatório');
+    if (srStatusEl) srStatusEl.textContent = 'Gerando tema aleatório';
+
     setTimeout(() => {
       diceBtn.classList.remove('rolling');
+      diceBtn.removeAttribute('aria-disabled');
+      const old = diceBtn.getAttribute('data-prev-aria-label') || 'Aleatório';
+      diceBtn.setAttribute('aria-label', old);
+      diceBtn.removeAttribute('data-prev-aria-label');
+      if (srStatusEl) srStatusEl.textContent = '';
+
       // Seleciona um tema aleatório (exceto o próprio dado)
       const validThemes = themeCards.filter(c => c.dataset.theme);
       const randomIdx = Math.floor(Math.random() * validThemes.length);
@@ -90,80 +118,9 @@ async function startGame(theme) {
 
   if (theme) {
     questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… `;
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const uid = `hg${Math.random().toString(36).slice(2, 9)}`;
-
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('class', 'hourglass');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('width', '1em');
-    svg.setAttribute('height', '1em');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-
-    const defs = document.createElementNS(svgNS, 'defs');
-    const clipTop = document.createElementNS(svgNS, 'clipPath');
-    clipTop.setAttribute('id', `hg-top-${uid}`);
-    const polyTop = document.createElementNS(svgNS, 'polygon');
-    polyTop.setAttribute('points', '6,2 18,2 12,10');
-    clipTop.appendChild(polyTop);
-    defs.appendChild(clipTop);
-
-    const clipBottom = document.createElementNS(svgNS, 'clipPath');
-    clipBottom.setAttribute('id', `hg-bottom-${uid}`);
-    const polyBottom = document.createElementNS(svgNS, 'polygon');
-    polyBottom.setAttribute('points', '6,22 18,22 12,14');
-    clipBottom.appendChild(polyBottom);
-    defs.appendChild(clipBottom);
-
-    svg.appendChild(defs);
-
-    const outline = document.createElementNS(svgNS, 'path');
-    outline.setAttribute('d', 'M7 2h10l-4 6 4 6H7l4-6-4-6z');
-    outline.setAttribute('fill', 'none');
-    outline.setAttribute('stroke', 'currentColor');
-    outline.setAttribute('stroke-width', '1.2');
-    outline.setAttribute('stroke-linejoin', 'round');
-    svg.appendChild(outline);
-
-    const gTop = document.createElementNS(svgNS, 'g');
-    gTop.setAttribute('class', 'sand-top');
-    gTop.setAttribute('clip-path', `url(#hg-top-${uid})`);
-    const rectTop = document.createElementNS(svgNS, 'rect');
-    rectTop.setAttribute('x', '6');
-    rectTop.setAttribute('y', '2');
-    rectTop.setAttribute('width', '12');
-    rectTop.setAttribute('height', '8');
-    rectTop.setAttribute('fill', 'currentColor');
-    rectTop.setAttribute('opacity', '0.95');
-    gTop.appendChild(rectTop);
-    svg.appendChild(gTop);
-
-    const stream = document.createElementNS(svgNS, 'rect');
-    stream.setAttribute('class', 'stream');
-    stream.setAttribute('x', '11.4');
-    stream.setAttribute('y', '9');
-    stream.setAttribute('width', '1.2');
-    stream.setAttribute('height', '6');
-    stream.setAttribute('fill', 'currentColor');
-    stream.setAttribute('opacity', '0.95');
-    stream.setAttribute('rx', '0.6');
-    svg.appendChild(stream);
-
-    const gBottom = document.createElementNS(svgNS, 'g');
-    gBottom.setAttribute('class', 'sand-bottom');
-    gBottom.setAttribute('clip-path', `url(#hg-bottom-${uid})`);
-    const rectBottom = document.createElementNS(svgNS, 'rect');
-    rectBottom.setAttribute('x', '6');
-    rectBottom.setAttribute('y', '14');
-    rectBottom.setAttribute('width', '12');
-    rectBottom.setAttribute('height', '8');
-    rectBottom.setAttribute('fill', 'currentColor');
-    rectBottom.setAttribute('opacity', '0.95');
-    gBottom.appendChild(rectBottom);
-    svg.appendChild(gBottom);
-
-    questionEl.appendChild(svg);
+    const spinnerHtml = '<span class="svg-wrap"><svg class="hourglass" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false"><path d="M7 2h10l-4 6 4 6H7l4-6-4-6z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><g class="sand-top"><rect x="6" y="2" width="12" height="8" fill="currentColor" opacity="0.95"/></g><rect class="stream" x="11.4" y="9" width="1.2" height="6" fill="currentColor" opacity="0.95" rx="0.6"/><g class="sand-bottom"><rect x="6" y="14" width="12" height="8" fill="currentColor" opacity="0.95"/></g></svg></span>';
+    const tmp = document.createElement('div'); tmp.innerHTML = spinnerHtml;
+    const node = tmp.firstElementChild; if (node) questionEl.appendChild(node);
     choicesEl.innerHTML = '';
   }
 
@@ -171,11 +128,17 @@ async function startGame(theme) {
 
   if (theme) {
     try {
+      if (activeController) activeController.abort();
+      activeController = new AbortController();
+      const { signal } = activeController;
+
       const resp = await fetch(`${SERVER_BASE}/api/generate-questions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ theme, count: NUM_QUESTIONS }) // Pede apenas as 10 necessárias
+        body: JSON.stringify({ theme, count: NUM_QUESTIONS }), // Pede apenas as 10 necessárias
+        signal,
       });
+      activeController = null;
       if (resp.ok) {
         const data = await resp.json();
         if (data?.ok && Array.isArray(data.questions) && data.questions.length) {
@@ -185,7 +148,9 @@ async function startGame(theme) {
         }
       }
     } catch (err) {
+      if (err && err.name === 'AbortError') return; // silencioso para abortos por troca de tema
       console.warn('Falha ao chamar servidor generativo:', err);
+      activeController = null;
     }
   }
 
@@ -249,7 +214,8 @@ function showQuestion() {
   if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
   if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
 
-  q.choices.forEach((text, idx) => {
+  const choiceList = Array.isArray(q.choices) ? q.choices : [];
+  choiceList.forEach((text, idx) => {
     const btn = document.createElement('button');
     btn.className = 'btn choice';
     btn.type = 'button';
@@ -274,8 +240,9 @@ function onChoice(e) {
   if (answered) return;
   answered = true;
   const idx = Number(e.currentTarget.dataset.index);
-  const correctIdx = selected[current].answerIndex;
+  let correctIdx = Number(selected[current].answerIndex ?? 0);
   const buttons = Array.from(choicesEl.querySelectorAll('button'));
+  if (!(correctIdx >= 0 && correctIdx < buttons.length)) correctIdx = 0;
 
   if (idx === correctIdx) {
     e.currentTarget.classList.add('correct');

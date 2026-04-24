@@ -54,7 +54,10 @@ async function generate() {
 
       const prompt = `Gere ${count} perguntas de múltipla escolha em português sobre o tema "${theme || 'variado'}". Responda APENAS com um array JSON. Cada item deve ter: id (inteiro), theme (string), question (string), choices (array de exatas 4 strings), answerIndex (inteiro começando em 0), e explanation (string). Exemplo:\n[ { "id": 1, "theme": "${theme || 'variado'}", "question": "Pergunta?", "choices": ["A","B","C","D"], "answerIndex": 0, "explanation": "Motivo da resposta" } ]\nSem texto adicional, formatação markdown ou crases, apenas o JSON puro.`;
 
-      const url = `${GENERATIVE_API_URL}?key=${apiKey}`;
+      const geminiUtils = require('./lib/gemini-utils.cjs');
+
+      const url = GENERATIVE_API_URL; // never place API keys in the URL
+      const headers = { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey };
 
       const body = {
         contents: [{ parts: [{ text: prompt }] }],
@@ -63,7 +66,7 @@ async function generate() {
 
       const res = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(10_000),
       });
@@ -71,13 +74,14 @@ async function generate() {
       if (!res.ok) throw new Error(`Erro API ${res.status}: ${await res.text()}`);
 
       const data = await res.json();
-      let text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
+      const text = geminiUtils.extractTextFromResponse(data);
       if (!text) throw new Error('A resposta da API não continha texto válido.');
 
-      const cleanedText = text.replaceAll('```json', '').replaceAll('```', '').trim();
-      const parsed = JSON.parse(cleanedText);
-      fs.writeFileSync('questions.json', JSON.stringify(parsed, null, 2), 'utf8');
+      const parsed = geminiUtils.extractJSONFromText(text);
+      if (!parsed) throw new Error('Não foi possível extrair JSON da resposta da API.');
+
+      const normalized = geminiUtils.normalizeQuestions(parsed, theme || 'Misturado');
+      fs.writeFileSync('questions.json', JSON.stringify(normalized, null, 2), 'utf8');
       console.log('✅ questions.json criado via API do Gemini!');
       return;
     } catch (err) {
