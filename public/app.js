@@ -28,6 +28,7 @@ const progressText = document.getElementById('progressText');
 const progressFill = document.getElementById('progressFill');
 const nextBtn = document.getElementById('nextBtn');
 const restartBtn = document.getElementById('restartBtn');
+const quitBtn = document.getElementById('quitBtn');
 const themeCards = Array.from(document.querySelectorAll('.theme-card'));
 const diceBtn = document.getElementById('random-dice');
 const themeTagEl = document.getElementById('themeTag');
@@ -57,6 +58,7 @@ if (!srStatusEl) {
 
 nextBtn.addEventListener('click', onNext);
 restartBtn.addEventListener('click', resetToIntro);
+if (quitBtn) quitBtn.addEventListener('click', resetToIntro);
 
 
 themeCards.forEach(card => {
@@ -317,10 +319,22 @@ function showFinal() {
 function resetToIntro() {
   if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
   if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
+  if (activeController) { try { activeController.abort(); } catch (e) { } activeController = null; }
+  // Hide any game screens and return to intro/theme selection
+  questionScreen.classList.add('hidden');
   finalScreen.classList.add('hidden');
   intro.classList.remove('hidden');
   themeCards.forEach(c => c.classList.remove('selected'));
   if (themeTagEl) { themeTagEl.classList.add('hidden'); themeTagEl.textContent = ''; }
+
+  // Reset in-memory game state
+  questions = [];
+  selected = [];
+  current = 0;
+  score = 0;
+  answered = false;
+  updateScore();
+  if (nextBtn) nextBtn.disabled = true;
 }
 
 document.addEventListener('keydown', (e) => {
