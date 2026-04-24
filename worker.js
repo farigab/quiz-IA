@@ -85,7 +85,10 @@ export default {
 
       const geminiBody = {
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7, maxOutputTokens: 2000 },
+        generationConfig: {
+          temperature: 0.7,
+          thinkingConfig: { thinkingBudget: 0 },
+        },
       };
 
       const apiResp = await fetch(apiUrl, {

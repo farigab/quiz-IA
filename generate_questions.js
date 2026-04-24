@@ -31,7 +31,7 @@ async function generate() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ theme, count }),
-        signal: AbortSignal.timeout(10_000),
+        signal: AbortSignal.timeout(Number(process.env.GENERATIVE_TIMEOUT_MS) || 45_000),
       });
 
       if (resp.ok) {
@@ -61,14 +61,18 @@ async function generate() {
 
       const body = {
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7 }
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 2000,
+          thinkingConfig: { thinkingBudget: 0 },
+        },
       };
 
       const res = await fetch(url, {
         method: 'POST',
         headers,
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(10_000),
+        signal: AbortSignal.timeout(Number(process.env.GENERATIVE_TIMEOUT_MS) || 45_000),
       });
 
       if (!res.ok) throw new Error(`Erro API ${res.status}: ${await res.text()}`);
