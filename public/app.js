@@ -58,7 +58,11 @@ if (!srStatusEl) {
 
 nextBtn.addEventListener('click', onNext);
 restartBtn.addEventListener('click', resetToIntro);
-if (quitBtn) quitBtn.addEventListener('click', resetToIntro);
+if (quitBtn) {
+  // hide by default — only show while in question flow with an active theme
+  quitBtn.classList.add('hidden');
+  quitBtn.addEventListener('click', resetToIntro);
+}
 
 
 themeCards.forEach(card => {
@@ -117,6 +121,15 @@ async function startGame(theme) {
   intro.classList.add('hidden');
   questionScreen.classList.remove('hidden');
   finalScreen.classList.add('hidden');
+
+  // show quit button only when a theme is provided (we're in the question flow)
+  if (quitBtn) {
+    if (theme) {
+      quitBtn.classList.remove('hidden');
+    } else {
+      quitBtn.classList.add('hidden');
+    }
+  }
 
   if (theme) {
     questionEl.textContent = `A inteligência artificial está criando perguntas novinhas sobre ${theme}… `;
@@ -302,6 +315,7 @@ function updateScore() {
 function showFinal() {
   questionScreen.classList.add('hidden');
   finalScreen.classList.remove('hidden');
+  if (quitBtn) quitBtn.classList.add('hidden');
   finalScoreEl.textContent = score;
   if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
   if (explanationEl) { const prev = explanationEl.querySelector('.countdown'); if (prev) prev.remove(); }
@@ -326,6 +340,8 @@ function resetToIntro() {
   intro.classList.remove('hidden');
   themeCards.forEach(c => c.classList.remove('selected'));
   if (themeTagEl) { themeTagEl.classList.add('hidden'); themeTagEl.textContent = ''; }
+
+  if (quitBtn) quitBtn.classList.add('hidden');
 
   // Reset in-memory game state
   questions = [];

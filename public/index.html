@@ -49,7 +49,10 @@
       <h1>Quiz IA</h1>
       <div class="score">Placar: <span id="score">0</span></div>
     </header>
-    <div id="themeTag" class="theme-tag hidden" aria-live="polite" role="status"></div>
+    <div class="theme-container">
+      <div id="themeTag" class="theme-tag hidden" aria-live="polite" role="status"></div>
+      <button id="quitBtn" class="btn secondary quit-btn" type="button">Desistir</button>
+    </div>
     <main id="game">
       <div id="intro" class="screen">
         <p>Responda 10 perguntas. Toque em um tema para iniciar:</p>
@@ -95,7 +98,6 @@
         <div id="choices" class="choices"></div>
         <div id="explanation" class="explanation hidden"></div>
         <div class="actions">
-          <button id="quitBtn" class="btn secondary" type="button">Desistir</button>
           <button id="nextBtn" class="btn" disabled>Próxima</button>
         </div>
       </div>
