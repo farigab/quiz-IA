@@ -4,7 +4,7 @@ workers_dev = true
 main = "worker.js"
 
 [observability]
-enabled = false
+enabled = true
 
 [vars]
 GENERATIVE_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent"
