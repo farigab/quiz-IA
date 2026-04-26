@@ -44,10 +44,11 @@ export default {
       const prompt = `Gere ${count} perguntas de múltipla escolha em português sobre o tema "${theme}". ` +
         `As perguntas devem ter níveis de dificuldade variados (fácil, médio e difícil), distribuídos de forma equilibrada. ` +
         `Responda APENAS com um array JSON. Cada item deve ter: id (inteiro), theme (string), ` +
-        `question (string), choices (array de exatas 4 strings), answerIndex (inteiro começando em 0), ` +
+        `question (string), choices (array de 4 strings), answerIndex (inteiro começando em 0), ` +
         `e explanation (string). ` +
+        `Não inclua letras ou marcações nas opções, apenas os textos das escolhas. ` +
         `Exemplo:\n[ { "id": 1, "theme": "${theme}", "question": "Pergunta?", ` +
-        `"choices": ["A","B","C","D"], "answerIndex": 0, "explanation": "Motivo da resposta" } ]\n` +
+        `"choices": ["Opção 1","Opção 2","Opção 3","Opção 4"], "answerIndex": 0, "explanation": "Motivo da resposta" } ]\n` +
         `Sem texto adicional, formatação markdown ou crases, apenas o JSON puro.`;
 
       const GENERATIVE_API_URL = env.GENERATIVE_API_URL || DEFAULT_GENERATIVE_URL;
