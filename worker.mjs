@@ -42,6 +42,7 @@ export default {
       const count = sanitizeCount(body.count);
 
       const prompt = `Gere ${count} perguntas de múltipla escolha em português sobre o tema "${theme}". ` +
+        `As perguntas devem ter níveis de dificuldade variados (fácil, médio e difícil), distribuídos de forma equilibrada. ` +
         `Responda APENAS com um array JSON. Cada item deve ter: id (inteiro), theme (string), ` +
         `question (string), choices (array de exatas 4 strings), answerIndex (inteiro começando em 0), ` +
         `e explanation (string). ` +
